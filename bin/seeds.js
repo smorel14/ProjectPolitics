@@ -23,16 +23,6 @@ mongoose
 
 let users = [
   {
-    username: "alice",
-<<<<<<< HEAD
-    password: bcrypt.hashSync("alice", bcrypt.genSaltSync(bcryptSalt))
-  },
-  {
-    username: "bob",
-    password: bcrypt.hashSync("bob", bcrypt.genSaltSync(bcryptSalt))
-  }
-];
-=======
     password: bcrypt.hashSync("alice", bcrypt.genSaltSync(bcryptSalt)),
     name: 'alice',
     party: "Labour",
@@ -62,7 +52,6 @@ let users = [
 
 
 ]
->>>>>>> 920cacd9286c86642b423c6ad9be210996f461ac
 
 User.deleteMany()
   .then(() => {
