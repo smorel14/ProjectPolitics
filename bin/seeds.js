@@ -24,6 +24,7 @@ mongoose
 let users = [
   {
     username: "alice",
+<<<<<<< HEAD
     password: bcrypt.hashSync("alice", bcrypt.genSaltSync(bcryptSalt))
   },
   {
@@ -31,6 +32,37 @@ let users = [
     password: bcrypt.hashSync("bob", bcrypt.genSaltSync(bcryptSalt))
   }
 ];
+=======
+    password: bcrypt.hashSync("alice", bcrypt.genSaltSync(bcryptSalt)),
+    name: 'alice',
+    party: "Labour",
+    pliticalView: 'Undecided',
+    role: "user"
+
+
+  },
+  {
+    username: "bob",
+    password: bcrypt.hashSync("bob", bcrypt.genSaltSync(bcryptSalt)),
+    name: "bob",
+    party: "Labour",
+    pliticalView: 'Changing the world',
+    role: "admin"
+  },
+
+  {
+    username: "boris",
+    profilePicture: "/images/borisJohnson.png",
+    password: bcrypt.hashSync("boris", bcrypt.genSaltSync(bcryptSalt)),
+    name: "Boris Johnson",
+    party: "Conservative",
+    pliticalView: 'Voting Tory will cause your wife to have bigger breasts and increase your chances of owning a BMW M3',
+    role: "admin"
+  }
+
+
+]
+>>>>>>> 920cacd9286c86642b423c6ad9be210996f461ac
 
 User.deleteMany()
   .then(() => {
