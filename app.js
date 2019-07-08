@@ -58,7 +58,12 @@ hbs.registerHelper('ifUndefined', (value, options) => {
       return options.fn(this);
   }
 });
-  
+ 
+hbs.registerHelper('ifEquals', function(arg1, arg2, options) {
+  return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+});
+
+
 
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
@@ -75,8 +80,15 @@ app.use(flash());
 require('./passport')(app);
     
 
+// Middleware executed everytime
+app.use((req,res,next) => {
+  res.locals.user = req.user // Define a view variable user equals to req.user
+  res.locals.x = 42 // Define a view variable x equals to 42
+  next()
+})
+
+
 app.use('/', require('./routes/index'));
-//app.use('/articles', require('./routes/articles'))
 app.use('/auth', require('./routes/auth'));
       
 

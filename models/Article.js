@@ -4,8 +4,8 @@ const Schema   = mongoose.Schema;
 const articlesSchema = new Schema({
   title: String,
   description: String,
-  imgArticle: {type: String, default: "public/images/default-article-image.jpg"},
-  link: String,
+  imgArticle: {type: String, default: "/images/default-article-image.jpg"},
+  link: String, 
   date: String,
   votingDate: String
 
