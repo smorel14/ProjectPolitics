@@ -82,17 +82,14 @@ require('./passport')(app);
 
 // Middleware executed everytime
 app.use((req,res,next) => {
-  console.log('req', req.user)
   res.locals.user = req.user // Define a view variable user equals to req.user
   res.locals.x = 42 // Define a view variable x equals to 42
   next()
 })
 
-const index = require('./routes/index');
-app.use('/', index);
 
-const authRoutes = require('./routes/auth');
-app.use('/auth', authRoutes);
+app.use('/', require('./routes/index'));
+app.use('/auth', require('./routes/auth'));
       
 
 module.exports = app;

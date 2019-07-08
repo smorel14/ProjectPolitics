@@ -6,7 +6,8 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
-const Articles = require("../models/Articles");
+const Articles = require("../models/Article");
+const Votes = require("../models/Vote");
 
 const bcryptSalt = 10;
 
@@ -76,7 +77,7 @@ let articles = [
     title: "Brexit: All you need to know about the UK leaving the EU",
     description:
       "Here is an easy-to-understand guide to Brexit - beginning with the basics, then a look at the current negotiations, followed by a selection of answers to questions we've been sent.",
-    img: "https://ichef.bbci.co.uk/news/660/cpsprodpb/2847/production/_90911301_c5b48218-424a-41c4-9b6b-638600ec508f.jpg",
+    imgArticle: "https://ichef.bbci.co.uk/news/660/cpsprodpb/2847/production/_90911301_c5b48218-424a-41c4-9b6b-638600ec508f.jpg",
     link: String,
     date: "08-07-2019",
     votingDate: String
@@ -98,6 +99,36 @@ Articles.deleteMany()
   .then(articlesCreated => {
     console.log(
       `${articlesCreated.length} article created with the following id:`
+    );
+  })
+  .then(() => {
+    // Close properly the connection to Mongoose
+    mongoose.disconnect();
+  })
+  .catch(err => {
+    mongoose.disconnect();
+    throw err;
+  });
+
+
+  let votes = [
+    {
+      _ownerID : "5d2338109214330a21c45e17",
+      _articleID : "5d2338109214330a21c45e1a",
+      option: 'for',
+      visible: 'visible'
+    
+    }
+  
+  ];
+
+  Votes.deleteMany()
+  .then(() => {
+    return Votes.create(votes);
+  })
+  .then(votesCreated => {
+    console.log(
+      `${votesCreated.length} vote created with the following id:`
     );
   })
   .then(() => {

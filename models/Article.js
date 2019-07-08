@@ -4,7 +4,7 @@ const Schema   = mongoose.Schema;
 const articlesSchema = new Schema({
   title: String,
   description: String,
-  img: {type: String, default: "public/images/default-article-image.jpg"},
+  imgArticle: {type: String, default: "/images/default-article-image.jpg"},
   link: String,
   date: String,
   votingDate: String
@@ -16,5 +16,5 @@ const articlesSchema = new Schema({
   }
 });
 
-const Articles = mongoose.model('Articles', articlesSchema);
-module.exports = Articles;
+const Article = mongoose.model('Article', articlesSchema);
+module.exports = Article;
