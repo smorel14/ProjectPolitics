@@ -1,9 +1,14 @@
-  $primary: #0A1376; // To change the primary color
+ 
+ $primary: #0A1376; // To change the primary color
 
 @import '../../node_modules/bootstrap/scss/bootstrap.scss';
 
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;  // font-family: 'Lora', serif;
+}
+
+.navbar-brand {
+  font-family: 'Roboto Black', sans-serif;  // font-family: 'Lora', serif;
 }
 
 a {
