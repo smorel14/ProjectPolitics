@@ -76,7 +76,7 @@ require('./passport')(app);
     
 
 app.use('/', require('./routes/index'));
-app.use('/articles', require('./routes/articles'))
+//app.use('/articles', require('./routes/articles'))
 app.use('/auth', require('./routes/auth'));
       
 
