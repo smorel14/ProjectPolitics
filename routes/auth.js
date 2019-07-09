@@ -22,7 +22,7 @@ router.post("/login", passport.authenticate("local", {
 }));
 
 router.get("/signup", (req, res, next) => {
-  res.render("auth/signup", { layout: "layout-without-navbar" });
+  res.render("auth/signup", { title: "Signup" });
 });
 
 router.post("/signup", (req, res, next) => {
