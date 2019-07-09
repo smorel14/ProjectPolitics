@@ -1,16 +1,23 @@
  
- $primary: #0A1376; // To change the primary color
 
+ $primary: #0A1376; // To change the primary color
 @import '../../node_modules/bootstrap/scss/bootstrap.scss';
+
+
 
 body {
   font-family: 'Roboto', sans-serif;  // font-family: 'Lora', serif;
+  background-color: #F0FFFF;
 }
 
-.navbar-brand {
+.font-bold {
   font-family: 'Roboto Black', sans-serif;  // font-family: 'Lora', serif;
 }
+
+
 
 a {
   color: #00B7FF;
 }
+
+

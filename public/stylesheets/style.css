@@ -7021,9 +7021,10 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #dee2e6; } }
 
 body {
-  font-family: 'Roboto', sans-serif; }
+  font-family: 'Roboto', sans-serif;
+  background-color: #F0FFFF; }
 
-.navbar-brand {
+.font-bold {
   font-family: 'Roboto Black', sans-serif; }
 
 a {
