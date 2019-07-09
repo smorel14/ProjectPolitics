@@ -7030,4 +7030,10 @@ body {
 a {
   color: #00B7FF; }
 
+.voting-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px; }
+
 /*# sourceMappingURL=style.css.map */

@@ -1,0 +1,54 @@
+<div>
+  <h3 class="font-bold"> Edit Profile </h3>
+</div>
+
+<img alt="error" width="50%" src="{{user.profilePicture}}" <div class="mr-3 ml-3">
+
+
+<form action="/editProfile" method="POST" enctype="multipart/form-data">
+
+  <div class="form-group">
+    <label for="profilePicture">Profile Picture</label>
+    <input id="profilePicture" type="file" class="form-control form-input" name="photo">
+  </div>
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input id="name" type="text" name="name" class="form-control" value={{user.name}}>
+  </div>
+  <div class="form-group">
+    <label for="pliticalView">Plitical View</label>
+    <textarea id="pliticalView" class="form-control" rows="3" name="pliticalView">{{user.pliticalView}}</textarea>
+  </div>
+  <div class="form-group">
+    <label for="party">Select Party</label>
+    <select class="form-control" id="party" name="party">
+      <option value="Conservative">Conservative</option>
+      <option {{#ifEquals user.party "Labour"}}selected{{/ifEquals}} value="Labour">Labour</option>
+      <option {{#ifEquals user.party "Scottish National"}}selected{{/ifEquals}}value="Scottish National">Scottish National</option>
+      <option {{#ifEquals user.party "Liberal Democrats"}}selected{{/ifEquals}}value="Liberal Democrats">Liberal Democrats</option>
+      <option {{#ifEquals user.party "Democratic Unionist"}}selected{{/ifEquals}}value="Democratic Unionist">Democratic Unionist</option>
+      <option {{#ifEquals user.party "Sinn Fein"}}selected{{/ifEquals}}value="Sinn Fein">Sinn Fein</option>
+      <option {{#ifEquals user.party "The Independent Group for Change"}}selected{{/ifEquals}}value="The Independent Group for Change">The Independent Group for Change</option>
+      <option {{#ifEquals user.party "Plaid Cymru"}}selected{{/ifEquals}}value="Plaid Cymru">Plaid Cymru</option>
+      <option {{#ifEquals user.party "Green Party of England and Wales"}}selected{{/ifEquals}}value="Green Party of England and Wales">Green Party of England and Wales</option>
+      <option {{#ifEquals user.party "Brexit Party"}}selected{{/ifEquals}}value="Brexit Party">Brexit Party</option>
+      <option {{#ifEquals user.party "Scottish Green"}}selected{{/ifEquals}}value="Scottish Green">Scottish Green</option>
+      <option {{#ifEquals user.party "UK Independence Party"}}selected{{/ifEquals}}value="UK Independence Party">UK Independence Party</option>
+      <option {{#ifEquals user.party "Social Democratic"}}selected{{/ifEquals}}value="Social Democratic">Social Democratic</option>
+      <option {{#ifEquals user.party "Ulster Unionist"}}selected{{/ifEquals}}value="Ulster Unionist">Ulster Unionist</option>
+      <option {{#ifEquals user.party "Alliance Party of Northern Ireland"}}selected{{/ifEquals}}value="Alliance Party of Northern Ireland">Alliance Party of Northern Ireland</option>
+      <option {{#ifEquals user.party "Green Party in Northern Ireland"}}selected{{/ifEquals}}value="Green Party in Northern Ireland">Green Party in Northern Ireland</option>
+      <option {{#ifEquals user.party "Traditional Unionist Voice"}}selected{{/ifEquals}}value="Traditional Unionist Voice">Traditional Unionist Voice</option>
+      <option {{#ifEquals user.party "People Before Profit"}}selected{{/ifEquals}}value="People Before Profit">People Before Profit</option>
+    </select>
+  </div>
+
+  <button class="btn-primary"> Submit Form </button>
+</form>
+
+</div>
+
+
+
+
+

@@ -1,36 +1,50 @@
-<div class="voting-wrapper">
+<div>
+  <div class="voting-wrapper">
 
-
-  {{#each articles}}
-  <div class="voting-item">
-    <h3 class="font-bold"> Voting </h3>
-    <h3>{{this.title}}</h3>
-    <p>{{this.description}}</p>
-    <a href="{{this.link}}">Full Article</a><br><br>
-    {{!-- <img src="{{this.imgArticle}}" alt="" width="100%"><br><br> --}}
-
-    <h4>Time to Vote</h4><br>
+    {{!-- <h3 class="font-bold"> Voting </h3> --}}
+    <h3>{{article.title}}</h3>
+    <p>{{article.description}}</p>
+    <a href="{{article.link}}">Full Article</a><br><br>
+    
+  </div>
+    <img src="{{article.imgArticle}}" alt="" width="100%">
+    <br><br>
+    <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
     <form>
       <div class="form-row align-items-center">
         <div class="col-auto my-1">
-          <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+      <h4>Time to Vote</h4><br>
+          {{!-- <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label> --}}
           <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
             <option selected>Choose...</option>
             <option value="1">For</option>
             <option value="2">Against</option>
 
-          </select>
-        </div>
-        <div class="col-auto my-1">
-          <button type="submit" class="btn btn-primary">Submit</button>
+          </select><br><br>
+          <select class="custom-select mr-sm-2" id="CustomSelect">
+            <option selected>Let Others See Your Answer</option>
+            <option value="3">Visible</option>
+            <option value="4">Not Visible</option>  
+
+          </select><br><br>
+           <button type="submit" class="btn btn-primary">Submit</button>
         </div>
       </div>
-    </form><br>
+    </form>
+    </ul>
+    </nav><br>
 
+    {{!-- <input class="form-control" type="text" placeholder="Default input"> --}}
     <a href="#" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Share</a><br><br><br><br>
 
-  </div>
-
-  {{/each}}
 
 </div>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+
+    </ul>
+</nav>
+
+

@@ -10,35 +10,32 @@
 
 <form action="/addArticle" method="POST" enctype="multipart/form-data">
   <div class="form-group">
-    <label for="exampleFormControlInput1">Title</label>
-    <input type="text" name="title" class="form-control">
+    <label for="title">Title</label>
+    <input id="title" type="text" name="title" class="form-control">
   </div>
     <div class="form-group">
-    <label for="exampleFormControlTextarea1">Description</label>
-    <textarea class="form-control" rows="3" name="description"></textarea>
+    <label for="description">Description</label>
+    <textarea id="desctiption" class="form-control" rows="3" name="description"></textarea>
   </div>
   <div class="form-group" action="/addArticle" method="POST">
-    <label for="exampleFormControlInput1">Link</label>
-    <input type="text" class="form-control" name="link">
+    <label for="link" for="exampleFormControlInput1">Link</label>
+    <input id='link' type="text" class="form-control" name="link">
   </div>
     <div class="form-group" action="/addArticle" method="POST">
-    <label for="exampleFormControlInput1">Date</label>
-    <input type="date" class="form-control" name="date">
+    <label for="form-group">Date</label>
+    <input id="form-group" type="date" class="form-control" name="date">
   </div>
     <div class="form-group" action="/addArticle" method="POST">
-    <label for="exampleFormControlInput1">Date of vote in Parlament</label>
-    <input type="date" class="form-control" name="votingDate">
+    <label for="date">Date of vote in Parlament</label>
+    <input id="date" type="date" class="form-control" name="votingDate">
   </div>
   
   <div class="form-group">
-    <label for="exampleFormControlFile1">Example file input</label>
-    <input type="file" class="form-control-file  " name="photo">
+    <label for="fileUplaod">Example file input</label>
+    <input id="fileUplaod" type="file" class="form-control-file form-input" name="photo">
   </div>
 
-  <button> Submit Form </button>
-
-
-
+  <button class="bg-white"> Submit Form </button>
 </form>
 
 </div>

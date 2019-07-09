@@ -6,7 +6,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
-const Articles = require("../models/Article");
+const Article = require("../models/Article");
 const Votes = require("../models/Vote");
 
 const bcryptSalt = 10;
@@ -92,9 +92,9 @@ let articles = [
   }
 ];
 
-Articles.deleteMany()
+Article.deleteMany()
   .then(() => {
-    return Articles.create(articles);
+    return Article.create(articles);
   })
   .then(articlesCreated => {
     console.log(
