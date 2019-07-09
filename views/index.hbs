@@ -3,9 +3,13 @@
   {{#each articles}}
     <div class="article-item">
       <h3>{{this.title}}</h3>
-      <p>{{this.description}}</p><br><br>
-      <img src="{{this.imgArticle}}" alt="" width="100%"><br>
-      <button>Vote</button>
+      <p>{{this.description}}</p>
+      <a href="{{this.link}}">Full Article</a><br><br>
+      <img src="{{this.imgArticle}}" alt="" width="100%"><br><br>
+      {{!-- <button type="button" class="btn btn-outline-dark">Click Here to Vote</button> --}}
+      <a href="#" class="btn btn-outline-dark" role="button" aria-pressed="true">Click Here to Vote</a>
+      <a href="#" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Share</a><br><br><br><br>
+      
     </div>
   
   {{/each}}

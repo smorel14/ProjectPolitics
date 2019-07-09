@@ -1,7 +1,7 @@
-const express = require('express')
+const express = require('express');
+const router  = express.Router();
 const Article = require('../models/Article')
 const uploadCload = require('../congfig/cloudinary')
-const router  = express.Router()
 
 
 router.get('/', (req, res, next) => {
@@ -11,7 +11,7 @@ router.get('/', (req, res, next) => {
         articles: articlesFromDb
       })
     })
-})
+  })
 
 router.get('/addArticle', (req, res, next) => {
   console.log('we are here');

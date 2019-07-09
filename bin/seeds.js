@@ -78,7 +78,7 @@ let articles = [
     description:
       "Here is an easy-to-understand guide to Brexit - beginning with the basics, then a look at the current negotiations, followed by a selection of answers to questions we've been sent.",
     imgArticle: "https://ichef.bbci.co.uk/news/660/cpsprodpb/2847/production/_90911301_c5b48218-424a-41c4-9b6b-638600ec508f.jpg",
-    link: String,
+    link: "https://www.bbc.com/news/uk-politics-32810887",
     date: "08-07-2019",
     votingDate: String
   },
