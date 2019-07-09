@@ -1,0 +1,36 @@
+<div class="voting-wrapper">
+
+
+  {{#each articles}}
+  <div class="voting-item">
+    <h3 class="font-bold"> Voting </h3>
+    <h3>{{this.title}}</h3>
+    <p>{{this.description}}</p>
+    <a href="{{this.link}}">Full Article</a><br><br>
+    {{!-- <img src="{{this.imgArticle}}" alt="" width="100%"><br><br> --}}
+
+    <h4>Time to Vote</h4><br>
+    <form>
+      <div class="form-row align-items-center">
+        <div class="col-auto my-1">
+          <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+          <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+            <option selected>Choose...</option>
+            <option value="1">For</option>
+            <option value="2">Against</option>
+
+          </select>
+        </div>
+        <div class="col-auto my-1">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </form><br>
+
+    <a href="#" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Share</a><br><br><br><br>
+
+  </div>
+
+  {{/each}}
+
+</div>

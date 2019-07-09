@@ -31,18 +31,38 @@ router.post('/addArticle', uploadCload.single('photo'), (req,res,next)=>{
   })
 })
 
-module.exports = router
 
+router.get('/voting', (req, res, next) => {
+  Article.find()
+    .then(articlesFromDb => {
+      res.render('voting', {
+        articles: articlesFromDb
+      })
+    })
+  })
 
-
-
-
-// router.get('/article/:articlesId', (req, res, next) => {
+// router.get('/voting/:articlesId', (req, res, next) => {
 //   let articlesId = req.params.articlesId
 //   Article.findById(articlesId)
-//     .then(articlesFromDb => {
-//       res.render('index', {
-//         articles: articlesFromDb
+//     .then(articleFromDb => {
+//       res.render('voting', {
+//         articles: articleFromDb
 //       })
 //     })
 // })
+
+router.post('/voting', (req,res,next)=>{
+  console.log("working?")
+  
+  
+  // .then( => {
+  //   res.redirect('/');
+  // }).catch( error => {
+  //   console.log(error);
+  // })
+});
+
+
+module.exports = router
+
+
