@@ -65,10 +65,6 @@ hbs.registerHelper('ifEquals', function(arg1, arg2, options) {
 
 
 
-// default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
-
-
 // Enable authentication using session + passport
 app.use(session({
   secret: 'irongenerator',
@@ -83,7 +79,7 @@ require('./passport')(app);
 // Middleware executed everytime
 app.use((req,res,next) => {
   res.locals.user = req.user // Define a view variable user equals to req.user
-  res.locals.x = 42 // Define a view variable x equals to 42
+  res.locals.title = "Politics" // Define a view variable title equals to "Politics" => Default title
   next()
 })
 

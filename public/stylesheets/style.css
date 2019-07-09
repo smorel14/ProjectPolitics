@@ -7030,4 +7030,11 @@ body {
 a {
   color: #00B7FF; }
 
+.backgroundImage {
+  background-image: url("/images/riot&blue.png");
+  height: 100vh; }
+
+.text__lucidaGrande {
+  font-size: 40px; }
+
 /*# sourceMappingURL=style.css.map */

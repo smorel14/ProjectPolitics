@@ -9,7 +9,8 @@ router.get('/', (req, res, next) => {
   Article.find()
     .then(articlesFromDb => {
       res.render('index', {
-        articles: articlesFromDb
+        articles: articlesFromDb,
+        title: "News"
       })
     })
   })
