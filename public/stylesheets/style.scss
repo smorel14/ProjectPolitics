@@ -1,29 +1,31 @@
- 
-
- $primary: #0A1376; // To change the primary color
-@import '../../node_modules/bootstrap/scss/bootstrap.scss';
-
-
+$primary: #0a1376; // To change the primary color
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
 
 body {
-  font-family: 'Roboto', sans-serif;  // font-family: 'Lora', serif;
-  background-color: #F0FFFF;
+  font-family: "Roboto", sans-serif; // font-family: 'Lora', serif;
+  background-color: #f0ffff;
 }
 
 .font-bold {
-  font-family: 'Roboto Black', sans-serif;  // font-family: 'Lora', serif;
+  font-family: "Roboto Black", sans-serif; // font-family: 'Lora', serif;
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
 }
 
-.backgroundImage{
+.voting-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px;
+}
+.backgroundImage {
   background-image: url("/images/riot&blue.png");
   height: 100vh;
   background-size: cover;                      
 }
 
-.text__lucidaGrande{
+.text__lucidaGrande {
   font-size: 40px;
 }
