@@ -9,9 +9,11 @@ const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
 
+
+
 router.get("/login", (req, res, next) => {
-  res.render("auth/login", { "message": req.flash("error"),   layout: "layout-without-navbar" 
-});
+  //res.render("auth/login", { "message": req.flash("error"),   layout: "layout-without-navbar" });
+  res.render("auth/login", { "message": req.flash("error"), title:"Login"});
 });
 
 router.post("/login", passport.authenticate("local", {
@@ -25,10 +27,12 @@ router.get("/signup", (req, res, next) => {
   res.render("auth/signup", { title: "Signup" });
 });
 
+
 router.post("/signup", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
-  if (username === "" || password === "") {
+  const role = req.body.role
+  if (username === "" || password === "" || role === "") {
     res.render("auth/signup", { message: "Indicate username and password"});
     return;
   }
@@ -44,7 +48,9 @@ router.post("/signup", (req, res, next) => {
 
     const newUser = new User({
       username,
-      password: hashPass
+      password: hashPass,
+      role,
+      name:username
     });
 
     newUser.save()

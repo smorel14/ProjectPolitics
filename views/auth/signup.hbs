@@ -6,7 +6,7 @@
       <label for="username">Username</label><br>
       <input class="form-control" id="username" type="text" name="username" placeholder="JonSnow">
 
-      <br><br>
+      <br>
 
       <label for="password">Password</label><br>
       <input class="form-control" id="password" type="password" name="password" placeholder="Your password">
@@ -15,16 +15,17 @@
       <div class="error-message">{{ message }}</div>
       {{/if}}
 
-      <br><br>
-      <p>Are you a politician?</p>
-      <label for="password">Yes</label>
-      <input type="checkbox" value="yes">
-      <label class="ml-4" for="password">No</label>
-      <input type="checkbox" value="No">
+      <br>
+      <a>Are you a politician?</a>
+
+      <label class="ml-4"  for="yes"> Yes </label>
+      <input type="radio" id="yes" value="politician" name="role"> 
+      <label class="ml-2" for="no"> No </label>
+      <input type="radio" id="no" value="user" name="role">
 
 
-
-      <br><br>
+      <br>
+      <br>
 
 
       <button class="btn btn-light">SIGN UP</button>

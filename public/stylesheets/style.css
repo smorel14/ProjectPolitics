@@ -7032,7 +7032,8 @@ a {
 
 .backgroundImage {
   background-image: url("/images/riot&blue.png");
-  height: 100vh; }
+  height: 100vh;
+  background-size: cover; }
 
 .text__lucidaGrande {
   font-size: 40px; }

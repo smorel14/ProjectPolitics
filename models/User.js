@@ -6,10 +6,12 @@ const userSchema = new Schema(
     username: {type:String, unique:true},
     password: String,
     profilePicture: {type:String, default: '/images/profilePic.jpg'},
-    name: String,
+    name: {type:String},
     party: {
       type: String,
+      default: "Anonymous",
       enum: [
+        "Anonymous",
         "Conservative",
         "Labour",
         "Scottish National",
@@ -30,7 +32,7 @@ const userSchema = new Schema(
         "People Before Profit"
       ]
     },
-    pliticalView: String,
+    politicalView: {type: String, default: "I don't have a politicalView"},
     role: { type: String, enum: ["admin", "user", "politician"] }
   },
   {

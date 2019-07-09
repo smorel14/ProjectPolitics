@@ -16,13 +16,14 @@
     <input id="name" type="text" name="name" class="form-control" value={{user.name}}>
   </div>
   <div class="form-group">
-    <label for="pliticalView">Plitical View</label>
-    <textarea id="pliticalView" class="form-control" rows="3" name="pliticalView">{{user.pliticalView}}</textarea>
+    <label for="politicalView">Plitical View</label>
+    <textarea id="politicalView" class="form-control" rows="3" name="politicalView">{{user.politicalView}}</textarea>
   </div>
   <div class="form-group">
     <label for="party">Select Party</label>
     <select class="form-control" id="party" name="party">
-      <option value="Conservative">Conservative</option>
+      <option value="Anonymous"> Anonymous </option>
+      <option {{#ifEquals user.party "Conservative"}}selected{{/ifEquals}}value="Conservative">Conservative</option>
       <option {{#ifEquals user.party "Labour"}}selected{{/ifEquals}} value="Labour">Labour</option>
       <option {{#ifEquals user.party "Scottish National"}}selected{{/ifEquals}}value="Scottish National">Scottish National</option>
       <option {{#ifEquals user.party "Liberal Democrats"}}selected{{/ifEquals}}value="Liberal Democrats">Liberal Democrats</option>

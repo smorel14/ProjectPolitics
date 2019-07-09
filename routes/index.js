@@ -38,7 +38,6 @@ router.get('/editProfile', (req, res, next) => {
 
 router.post('/editProfile', uploadCload.single('photo'), (req,res,next)=>{
   let id = req.user.id
-  console.log('id', id)
   let imgArticle =''
   if (req.file){
     imgArticle = req.file.url;
@@ -47,7 +46,7 @@ router.post('/editProfile', uploadCload.single('photo'), (req,res,next)=>{
     imgArticle = req.user.profilePicture
   }
   User.findByIdAndUpdate(id, {name: req.body.name, 
-    pliticalView: req.body.pliticalView, 
+    politicalView: req.body.politicalView, 
     party: req.body.party,
     profilePicture: imgArticle}
     ).then(()=>{

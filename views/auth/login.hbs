@@ -1,14 +1,15 @@
 <div class= "backgroundImage text-white">
-<h2>Login</h2>
+  <div class="container">
+    <h2 class="text__lucidaGrande">LOG IN</h2>
 
 <form action="/auth/login" method="POST" id="form-container">
   <label for="username">Username</label>
-  <input id="username" type="text" name="username" placeholder="JonSnow">
+  <input class="form-control" id="username" type="text" name="username" placeholder="JonSnow">
 
   <br><br>
 
   <label for="password">Password</label>
-  <input id="password" type="password" name="password" placeholder="Your password">
+  <input class="form-control" id="password" type="password" name="password" placeholder="Your password">
   <br>
   {{#if message }}
     <div class="error-message">{{ message }}</div>
@@ -16,14 +17,12 @@
 
   <br><br>
 
-  <button class="text-white">Login</button>
+  <button class="btn btn-light">LOG IN</button>
 
   <p class="account-message">
     Don't have an account yet?
     <a href="/auth/signup">Signup</a>
   </p>
 </form>
-
-
-
+</div>
 </div>
