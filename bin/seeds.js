@@ -27,7 +27,7 @@ let users = [
     password: bcrypt.hashSync("alice", bcrypt.genSaltSync(bcryptSalt)),
     name: 'alice',
     party: "Labour",
-    pliticalView: 'Undecided',
+    politicalView: 'Undecided',
     role: "user"
 
 
@@ -37,7 +37,7 @@ let users = [
     password: bcrypt.hashSync("bob", bcrypt.genSaltSync(bcryptSalt)),
     name: "bob",
     party: "Labour",
-    pliticalView: 'Changing the world',
+    politicalView: 'Changing the world',
     role: "admin"
   },
 
@@ -47,7 +47,7 @@ let users = [
     password: bcrypt.hashSync("boris", bcrypt.genSaltSync(bcryptSalt)),
     name: "Boris Johnson",
     party: "Conservative",
-    pliticalView: 'Voting Tory will cause your wife to have bigger breasts and increase your chances of owning a BMW M3',
+    politicalView: 'Voting Tory will cause your wife to have bigger breasts and increase your chances of owning a BMW M3',
     role: "admin"
   }
 

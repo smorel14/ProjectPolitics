@@ -30,7 +30,7 @@ const userSchema = new Schema(
         "People Before Profit"
       ]
     },
-    pliticalView: String,
+    politicalView: String,
     role: { type: String, enum: ["admin", "user", "politician"] }
   },
   {

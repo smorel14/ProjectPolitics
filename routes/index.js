@@ -47,7 +47,7 @@ router.post('/editProfile', uploadCload.single('photo'), (req,res,next)=>{
     imgArticle = req.user.profilePicture
   }
   User.findByIdAndUpdate(id, {name: req.body.name, 
-    pliticalView: req.body.pliticalView, 
+    politicalView: req.body.politicalView, 
     party: req.body.party,
     profilePicture: imgArticle}
     ).then(()=>{
@@ -57,14 +57,14 @@ router.post('/editProfile', uploadCload.single('photo'), (req,res,next)=>{
 
 
 
-router.get('/voting', (req, res, next) => {
-  Article.find()
-    .then(articlesFromDb => {
-      res.render('voting', {
-        articles: articlesFromDb
-      })
-    })
-  })
+// router.get('/voting', (req, res, next) => {
+//   Article.find()
+//     .then(articlesFromDb => {
+//       res.render('voting', {
+//         articles: articlesFromDb
+//       })
+//     })
+//   })
 
 router.get('/voting/:articlesId', (req, res, next) => {
   let articlesId = req.params.articlesId
@@ -77,17 +77,41 @@ router.get('/voting/:articlesId', (req, res, next) => {
     })
 })
 
-router.post('/voting', (req,res,next)=>{
-  console.log("working?")
+// router.post('/voting', (req,res,next)=>{
+//   console.log("working?")
   
   
-  // .then( => {
-  //   res.redirect('/');
-  // }).catch( error => {
-  //   console.log(error);
-  // })
-});
+//   .then( => {
+//     res.redirect('/');
+//   }).catch( error => {
+//     console.log(error);
+//   })
+// });
 
+
+router.get('/profile/:userId', (req, res, next) => {
+  let userId = req.params.userId
+  User.findById(userId) 
+    .then(userFromDb => {
+      res.render('profile', {
+        user: userFromDb,
+      })
+    })
+  })
+
+
+
+// router.post('/profile', (req, res, next) => {
+//   let userId = req.params.userId
+//   let imgUser = req.user.profilePicture
+//   User.findById(userId)
+//     .then(userFromDb => {
+//       res.render('profile', {
+//         user : userFromDb,
+//         // profilePicture: imgUser,
+//       })
+//     })
+// })
 
 module.exports = router
 

@@ -28,3 +28,15 @@ a {
 .text__lucidaGrande {
   font-size: 40px;
 }
+
+.profile-pic {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.profile-username {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
