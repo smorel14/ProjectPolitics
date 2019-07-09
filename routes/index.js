@@ -31,6 +31,12 @@ router.post('/addArticle', uploadCload.single('photo'), (req,res,next)=>{
   })
 })
 
+router.get('/editProfile', (req, res, next) => {
+  res.render('edit-profile')
+})
+
+
+
 module.exports = router
 
 
