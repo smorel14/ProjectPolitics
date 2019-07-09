@@ -2,6 +2,7 @@ const express = require('express');
 const router  = express.Router();
 const Article = require('../models/Article')
 const uploadCload = require('../congfig/cloudinary')
+const User = require('../models/User')
 
 
 router.get('/', (req, res, next) => {
@@ -19,7 +20,6 @@ router.get('/addArticle', (req, res, next) => {
 })
 
 router.post('/addArticle', uploadCload.single('photo'), (req,res,next)=>{
-  console.log("Wohoooo")
   const{title, description, link, date, votingDate} = req.body;
   const imgArticle = req.file.url;
   Article.create(
@@ -33,6 +33,25 @@ router.post('/addArticle', uploadCload.single('photo'), (req,res,next)=>{
 
 router.get('/editProfile', (req, res, next) => {
   res.render('edit-profile')
+})
+
+router.post('/editProfile', uploadCload.single('photo'), (req,res,next)=>{
+  let id = req.user.id
+  console.log('id', id)
+  let imgArticle =''
+  if (req.file){
+    imgArticle = req.file.url;
+  }
+  else{
+    imgArticle = req.user.profilePicture
+  }
+  User.findByIdAndUpdate(id, {name: req.body.name, 
+    pliticalView: req.body.pliticalView, 
+    party: req.body.party,
+    profilePicture: imgArticle}
+    ).then(()=>{
+    res.redirect('/');
+  })
 })
 
 
