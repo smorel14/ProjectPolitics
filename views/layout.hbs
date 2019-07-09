@@ -27,15 +27,16 @@
           <a class="nav-link" href="/">News</a>
         </li>
 
+        {{#ifEquals user.status "confirmed"}}
         {{#ifEquals user.role "admin"}}
         <li class="nav-item active">
           <a class="nav-link" href="/addArticle">Add an article</a>
         </li>
         {{/ifEquals}}
 
-        {{#if user}}
+  
         <li class="nav-item active">
-          <a class="nav-link" href="#">Profile page</a>
+          <a class="nav-link" href="/profile/{{user.id}}">Profile page</a>
         </li>
         <li class="nav-item active">
           <a class="nav-link" href="/editProfile">Edit my profile</a>
@@ -43,7 +44,10 @@
         <li class="nav-item active">
           <a class="nav-link" href="/auth/logout">Logout</a>
         </li>
-        {{/if}}
+        {{/ifEquals}}
+
+
+    
         {{#unless user}}
         <li class="nav-item active">
           <a class="nav-link" href="/auth/login">Login</a>
@@ -52,6 +56,16 @@
           <a class="nav-link" href="/auth/signup">Signup</a>
         </li>
         {{/unless}}
+        {{#ifEquals user.status "not-confirmed"}}
+        <li class="nav-item active">
+          <a class="nav-link" href="/auth/login">Login</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/auth/signup">Signup</a>
+        </li>
+        {{/ifEquals}}
+
+
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search">

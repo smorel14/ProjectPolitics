@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
   {
-    username: {type:String, unique:true},
+    email: {type:String, unique:true},
     password: String,
     profilePicture: {type:String, default: '/images/profilePic.jpg'},
     name: {type:String},
@@ -33,7 +33,9 @@ const userSchema = new Schema(
       ]
     },
     politicalView: {type: String, default: "I don't have a politicalView"},
-    role: { type: String, enum: ["admin", "user", "politician"] }
+    role: { type: String, enum: ["admin", "user", "politician"] },
+    status: {type: String, default:"not-confirmed", enum: ["not-confirmed", "confirmed"]},
+    confirmation_code: String
   },
   {
     timestamps: {

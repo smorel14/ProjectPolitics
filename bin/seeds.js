@@ -28,27 +28,32 @@ let users = [
     name: 'alice',
     party: "Labour",
     politicalView: 'Undecided',
-    role: "user"
+    role: "user",
+    status: "confirmed"
+
 
 
   },
   {
-    username: "bob",
+    email: "bob",
     password: bcrypt.hashSync("bob", bcrypt.genSaltSync(bcryptSalt)),
     name: "bob",
     party: "Labour",
     politicalView: 'Changing the world',
-    role: "admin"
+    role: "admin",
+    status: "confirmed"
   },
 
   {
-    username: "boris",
+    email: "boris",
     profilePicture: "/images/borisJohnson.png",
     password: bcrypt.hashSync("boris", bcrypt.genSaltSync(bcryptSalt)),
     name: "Boris Johnson",
     party: "Conservative",
     politicalView: 'Voting Tory will cause your wife to have bigger breasts and increase your chances of owning a BMW M3',
-    role: "admin"
+    role: "admin",
+    status: "confirmed"
+
   }
 
 

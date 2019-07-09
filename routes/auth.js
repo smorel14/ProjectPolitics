@@ -2,11 +2,23 @@ const express = require("express");
 const passport = require('passport');
 const router = express.Router();
 const User = require("../models/User");
-//const Articles = require("../models/Articles");
+const nodemailer = require('nodemailer');
 
+//const Articles = require("../models/Articles");
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
+
+
+let transporter = nodemailer.createTransport({
+  service: 'Gmail',
+  auth:{
+    user: process.env.GMAIL_USER,
+    pass: process.env.GMAIL_PASS
+  }
+})
+
+
 
 
 
@@ -29,43 +41,69 @@ router.get("/signup", (req, res, next) => {
 
 
 router.post("/signup", (req, res, next) => {
-  const username = req.body.username;
+  const email = req.body.email;
   const password = req.body.password;
   const role = req.body.role
-  if (username === "" || password === "" || role === "") {
-    res.render("auth/signup", { message: "Indicate username and password"});
-    return;
+  const characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  let token = '';
+  for (let i = 0; i < 25; i++) {
+    token += characters[Math.floor(Math.random() * characters.length )];
   }
 
-  User.findOne({ username }, "username", (err, user) => {
+  if (email === "" || password === "" || role === "") {
+    res.render("auth/signup", { message: "Indicate email and password"});
+    return;
+  }
+  User.findOne({ email }, "email", (err, user) => {
     if (user !== null) {
-      res.render("auth/signup", { message: "The username already exists" });
+      res.render("auth/signup", { message: "The email already exists" });
       return;
     }
-
     const salt = bcrypt.genSaltSync(bcryptSalt);
     const hashPass = bcrypt.hashSync(password, salt);
-
+    console.log('i am here', email, hashPass, role, email, token)
     const newUser = new User({
-      username,
+      email,
       password: hashPass,
       role,
-      name:username
+      name: email,
+      confirmation_code: token
     });
-
+    console.log('newUser', newUser)
+    console.log('i am here 2', email, hashPass, role, email, token)
     newUser.save()
-    .then(() => {
-      res.redirect("/");
+    //onsole.log('newUser2', newUser)
+    .then(() =>{
+      console.log('i am here 3')
+      transporter.sendMail({
+        from: "Goverment",
+        to: email,
+        subject: "Political Transformation",
+        text: 'use the following link: ' + token,
+        html: '<br>'+ token +'<br>'
+      })
+      .then(() => {
+        res.redirect("/");
+      })
+      .catch(next)
     })
     .catch(err => {
+      console.log('error', err)
       res.render("auth/signup", { message: "Something went wrong" });
     })
   });
 });
 
+
+
+
+
 router.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/");
 });
+
+
+
 
 module.exports = router;

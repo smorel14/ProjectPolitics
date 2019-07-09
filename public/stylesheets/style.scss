@@ -29,3 +29,15 @@ a {
 .text__lucidaGrande {
   font-size: 40px;
 }
+
+.profile-pic {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.profile-email {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
