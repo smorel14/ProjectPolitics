@@ -61,7 +61,6 @@ router.post("/signup", (req, res, next) => {
     }
     const salt = bcrypt.genSaltSync(bcryptSalt);
     const hashPass = bcrypt.hashSync(password, salt);
-    console.log('i am here', email, hashPass, role, email, token)
     const newUser = new User({
       email,
       password: hashPass,
@@ -69,18 +68,15 @@ router.post("/signup", (req, res, next) => {
       name: email,
       confirmation_code: token
     });
-    console.log('newUser', newUser)
-    console.log('i am here 2', email, hashPass, role, email, token)
     newUser.save()
     //onsole.log('newUser2', newUser)
     .then(() =>{
-      console.log('i am here 3')
       transporter.sendMail({
         from: "Goverment",
         to: email,
         subject: "Political Transformation",
-        text: 'use the following link: ' + token,
-        html: '<br>'+ token +'<br>'
+        text: 'use the following link: http://localhost:3000/auth/newlogin/' + token,
+        html: 'Please click on the following link to create your account: <br> http://localhost:3000/auth/newlogin/'+ token +'<br>'
       })
       .then(() => {
         res.redirect("/");
@@ -94,6 +90,27 @@ router.post("/signup", (req, res, next) => {
   });
 });
 
+
+
+
+router.get("/newlogin/:id", (req,res,next) => {
+  let sentVerification = req.params.id
+  console.log('sentVerification', sentVerification);
+  let userVerification = req.user.confirmation_code;
+  console.log('userVerification', req.user);
+  console.log('userVerification', userVerification);
+  if (sentVerification === userVerification){
+    User.findByIdAndUpdate(req.user.id, {status: "confirmed"}).then(()=>{
+      res.redirect("/");
+    })
+    .catch(err =>{
+      res.render("auth/login", { message: "Something went wrong" });
+    })
+  }
+  else{
+    res.render("auth/login", { message: "You have the wrong verification code" });
+  }
+})
 
 
 
