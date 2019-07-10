@@ -7,7 +7,9 @@ const articlesSchema = new Schema({
   imgArticle: {type: String, default: "/images/default-article-image.jpg"},
   link: String, 
   date: String,
-  votingDate: String
+  votingDate: String,
+  userVotes: {type: Array, default: []}
+
 
 }, {
   timestamps: {

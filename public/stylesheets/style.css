@@ -7030,6 +7030,10 @@ body {
 a {
   color: #00b7ff; }
 
+.container {
+  padding: 10px;
+  margin-bottom: 20px; }
+
 .voting-wrapper {
   display: flex;
   flex-wrap: wrap;

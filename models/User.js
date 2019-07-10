@@ -35,7 +35,7 @@ const userSchema = new Schema(
     politicalView: {type: String, default: "I don't have a politicalView"},
     role: { type: String, enum: ["admin", "user", "politician"] },
     status: {type: String, default:"not-confirmed", enum: ["not-confirmed", "confirmed"]},
-    confirmation_code: String
+    confirmation_code: String,
   },
   {
     timestamps: {
