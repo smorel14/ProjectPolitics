@@ -176,4 +176,9 @@ router.post("/voting/:articlesId", (req, res, next) => {
 //     })
 // })
 
+router.get("/profileList", (req, res, next) => {
+  
+  res.render("profile-list");
+});
+
 module.exports = router;
