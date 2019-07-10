@@ -21,8 +21,6 @@ let transporter = nodemailer.createTransport({
 
 
 
-
-
 router.get("/login", (req, res, next) => {
   //res.render("auth/login", { "message": req.flash("error"),   layout: "layout-without-navbar" });
   res.render("auth/login", { "message": req.flash("error"), title:"Login"});
