@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
 const voteSchema = new Schema({
-  _ownerID : {type: Schema.Types.ObjectId, ref:'User'},
-  _articleID: {type: Schema.Types.ObjectId, ref:'Articles'},
+  _owner : {type: Schema.Types.ObjectId, ref:'User'},
+  _article: {type: Schema.Types.ObjectId, ref:'Article'},
   option: {type: String, required: true, enum: ['for', 'against']},
   visible: {type: String, enum: ['visible', 'not visible']}
-
+  
 }, {
   timestamps: {
     createdAt: 'created_at',
