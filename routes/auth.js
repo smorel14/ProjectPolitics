@@ -77,7 +77,7 @@ router.post("/signup", (req, res, next) => {
         html: 'Please click on the following link to create your account: <br> http://localhost:3000/auth/newlogin/'+ token +'<br>'
       })
       .then(() => {
-        res.redirect("/");
+        res.redirect("auth/emailConfirmation");
       })
       .catch(next)
     })
@@ -98,15 +98,26 @@ router.get("/newlogin/:confirmationCode", (req,res,next) => {
   let sentVerification = req.params.confirmationCode
   console.log(sentVerification)
   User.find({confirmation_code : sentVerification}).then((user) => {
-    User.findByIdAndUpdate(req.user.id, {status: "confirmed"}).then(()=>{
-    res.redirect("/");
+    
+    console.log('confirmation code', user[0].confirmation_code )
+    console.log('sentVerification',sentVerification )
+    if(user[0].confirmation_code === sentVerification){
+      console.log("I AM HERE")
+      console.log('user.id', user[0].id)
+      User.findByIdAndUpdate(user[0].id, {status: "confirmed"}).then(()=>{
+      user[0].login
+      res.redirect("/");
+      })
+      .catch(err =>{
+        res.render("auth/login", { message: "You have an error" });
+      })
+    }
+    else {
+      res.render("auth/login", { message: "You have the wrong verification code" });
+    }
     })
     .catch(err =>{
       res.render("auth/login", { message: "You have an error" });
-    })
-    })
-    .catch(err =>{
-      res.render("auth/login", { message: "You have the wrong verification code" });
     })
   })
 

@@ -3,6 +3,7 @@ const router  = express.Router();
 const Article = require('../models/Article')
 const uploadCload = require('../congfig/cloudinary')
 const User = require('../models/User')
+const {checkAdmin, checkUser} = require("../middlewares/middlewares")
 
 
 router.get('/', (req, res, next) => {
@@ -15,12 +16,12 @@ router.get('/', (req, res, next) => {
     })
   })
 
-router.get('/addArticle', (req, res, next) => {
+router.get('/addArticle', checkAdmin, (req, res, next) => {
   console.log('we are here');
   res.render('addArticle')
 })
 
-router.post('/addArticle', uploadCload.single('photo'), (req,res,next)=>{
+router.post('/addArticle',checkAdmin, uploadCload.single('photo'), (req,res,next)=>{
   const{title, description, link, date, votingDate} = req.body;
   const imgArticle = req.file.url;
   Article.create(
@@ -32,11 +33,11 @@ router.post('/addArticle', uploadCload.single('photo'), (req,res,next)=>{
   })
 })
 
-router.get('/editProfile', (req, res, next) => {
+router.get('/editProfile', checkUser, (req, res, next) => {
   res.render('edit-profile')
 })
 
-router.post('/editProfile', uploadCload.single('photo'), (req,res,next)=>{
+router.post('/editProfile',checkUser, uploadCload.single('photo'), (req,res,next)=>{
   let id = req.user.id
   let imgArticle =''
   if (req.file){
@@ -65,7 +66,7 @@ router.post('/editProfile', uploadCload.single('photo'), (req,res,next)=>{
 //     })
 //   })
 
-router.get('/voting/:articlesId', (req, res, next) => {
+router.get('/voting/:articlesId',checkUser, (req, res, next) => {
   let articlesId = req.params.articlesId
   Article.findById(articlesId)
     .then(articleFromDb => {
@@ -88,7 +89,7 @@ router.get('/voting/:articlesId', (req, res, next) => {
 // });
 
 
-router.get('/profile/:userId', (req, res, next) => {
+router.get('/profile/:userId', checkUser,(req, res, next) => {
   let userId = req.params.userId
   User.findById(userId) 
     .then(userFromDb => {
