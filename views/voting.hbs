@@ -5,38 +5,39 @@
     <h3>{{article.title}}</h3>
     <p>{{article.description}}</p>
     <a href="{{article.link}}">Full Article</a><br><br>
-    
+
   </div>
-    <img src="{{article.imgArticle}}" alt="" width="100%">
-    <br><br>
-    <nav aria-label="Page navigation example">
+  <img src="{{article.imgArticle}}" alt="" width="100%">
+  <br><br>
+  <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
-    <form>
-      <div class="form-row align-items-center">
-        <div class="col-auto my-1">
-      <h4>Time to Vote</h4><br>
-          {{!-- <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label> --}}
-          <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-            <option selected>Choose...</option>
-            <option value="1">For</option>
-            <option value="2">Against</option>
+      <form action="/voting/{{article._id}}" method="POST">
+        <div class="form-row align-items-center">
+          <div class="col-auto my-1">
+            <h4>Time to Vote</h4><br>
+            {{!-- <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label> --}}
+              <p> For/Against</p>
+            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name= "select1" >
+              <option value="forAgainst" name="option" disabled selected>For/Agains</option>
+              <option value="for" name="option">For</option>
+              <option value="against" name="option">Against</option>
 
-          </select><br><br>
-          <select class="custom-select mr-sm-2" id="CustomSelect">
-            <option selected>Let Others See Your Answer</option>
-            <option value="3">Visible</option>
-            <option value="4">Not Visible</option>  
+            </select><br><br>
+            <select class="custom-select mr-sm-2" id="CustomSelect" name= "select2">
+              <option value="disabled" name="option" disabled selected>Profile Visability</option>
+              <option value="visible" name="visible">Visible</option>
+              <option value="not visible" name="visible">Not Visible</option>
 
-          </select><br><br>
-           <button type="submit" class="btn btn-primary">Submit</button>
+            </select><br><br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
     </ul>
-    </nav><br>
+  </nav><br>
 
-    {{!-- <input class="form-control" type="text" placeholder="Default input"> --}}
-    <a href="#" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Share</a><br><br><br><br>
+  {{!-- <input class="form-control" type="text" placeholder="Default input"> --}}
+  <a href="#" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Share</a><br><br><br><br>
 
 
 </div>
@@ -44,7 +45,5 @@
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
 
-    </ul>
+  </ul>
 </nav>
-
-

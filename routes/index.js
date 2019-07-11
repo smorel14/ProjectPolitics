@@ -1,113 +1,198 @@
-const express = require('express');
-const router  = express.Router();
-const Article = require('../models/Article')
-const uploadCload = require('../congfig/cloudinary')
-const User = require('../models/User')
-const Vote = require('../models/Vote')
-const {checkAdmin, checkUser} = require("../middlewares/middlewares")
+const express = require("express");
+const router = express.Router();
+const Article = require("../models/Article");
+const uploadCload = require("../congfig/cloudinary");
+const User = require("../models/User");
+const Vote = require("../models/Vote");
+const { checkAdmin, checkUser } = require("../middlewares/middlewares");
 
 
- router.get('/', (req, res, next) => {
-   Article.find()
-     .then(articlesFromDb => {
-       res.render('index', {
-         articles: articlesFromDb,
-         title: "News"
-       })
-     })
-   })
+//Gonna leave this here in case of trouble
 
+// router.get("/", (req, res, next) => {
+//   Article.find().then(articlesFromDb => {
+//     res.render("index", {
+//       articles: articlesFromDb,
+//       title: "News"
+//     });
+//   });
+// });
 
+// router.get("/addArticle", (req, res, next) => {
+//   console.log("we are here");
+//   res.render("addArticle");
+// });
 
+// router.post("/addArticle", uploadCload.single("photo"), (req, res, next) => {
+//   const { title, description, link, date, votingDate } = req.body;
+//   const imgArticle = req.file.url;
+//   Article.create({ title, description, link, date, votingDate, imgArticle })
+//     .then(articles => {
+//       res.redirect("/");
+//     })
+//     .catch(error => {
+//       console.log(error);
+//     });
+// });
 
+// router.get("/editProfile", (req, res, next) => {
+//   res.render("edit-profile");
+// });
 
+// router.post("/editProfile", uploadCload.single("photo"), (req, res, next) => {
+//   let id = req.user.id;
+//   let imgArticle = "";
+//   if (req.file) {
 
+router.get("/", (req, res, next) => {
+  Article.find().then(articlesFromDb => {
+    res.render("index", {
+      articles: articlesFromDb,
+      title: "News"
+    });
+  });
+});
 
+router.get("/addArticle", checkAdmin, (req, res, next) => {
+  console.log("we are here");
+  res.render("addArticle");
+});
 
-router.get('/addArticle', checkAdmin, (req, res, next) => {
-  console.log('we are here');
-  res.render('addArticle')
-})
-
-router.post('/addArticle',checkAdmin, uploadCload.single('photo'), (req,res,next)=>{
-  const{title, description, link, date, votingDate} = req.body;
-  const imgArticle = req.file.url;
-  Article.create(
-    {title, description, link, date, votingDate, imgArticle}
-  ).then(articles => {
-    res.redirect('/');
-  }).catch( error => {
-    console.log(error);
-  })
-})
-
-router.get('/editProfile', checkUser, (req, res, next) => {
-  res.render('edit-profile')
-})
-
-router.post('/editProfile',checkUser, uploadCload.single('photo'), (req,res,next)=>{
-  let id = req.user.id
-  let imgArticle =''
-  if (req.file){
-    imgArticle = req.file.url;
+router.post(
+  "/addArticle",
+  checkAdmin,
+  uploadCload.single("photo"),
+  (req, res, next) => {
+    const { title, description, link, date, votingDate } = req.body;
+    const imgArticle = req.file.url;
+    Article.create({ title, description, link, date, votingDate, imgArticle })
+      .then(articles => {
+        res.redirect("/");
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
-  else{
-    imgArticle = req.user.profilePicture
+);
+
+router.get("/editProfile", checkUser, (req, res, next) => {
+  res.render("edit-profile");
+});
+
+router.post(
+  "/editProfile",
+  checkUser,
+  uploadCload.single("photo"),
+  (req, res, next) => {
+    let id = req.user.id;
+    let imgArticle = "";
+    if (req.file) {
+      imgArticle = req.file.url;
+    } else {
+      imgArticle = req.user.profilePicture;
+    }
+    User.findByIdAndUpdate(id, {
+      name: req.body.name,
+      politicalView: req.body.politicalView,
+      party: req.body.party,
+      profilePicture: imgArticle
+    }).then(() => {
+      res.redirect("/");
+    });
   }
-  User.findByIdAndUpdate(id, {name: req.body.name, 
-    politicalView: req.body.politicalView, 
-    party: req.body.party,
-    profilePicture: imgArticle}
-    ).then(()=>{
-    res.redirect('/');
-  })
-})
+);
 
+router.get("/voting/:articlesId", (req, res, next) => {
+  let articlesId = req.params.articlesId;
+  Article.findById(articlesId).then(articleFromDb => {
+    res.render("voting", {
+      article: articleFromDb
+    });
+  });
+});
 
+router.get("/profile/:userId", (req, res, next) => {
+  let userId = req.params.userId;
+  User.findById(userId).then(userFromDb => {
+    res.render("profile", {
+      user: userFromDb
+    });
+  });
+});
 
-// router.get('/voting', (req, res, next) => {
-//   Article.find()
-//     .then(articlesFromDb => {
-//       res.render('voting', {
-//         articles: articlesFromDb
+// router.get('/profile/:userId', checkUser,(req, res, next) => {
+//   let userId = req.params.userId
+//   User.findById(userId)
+//     .then(userFromDb => {
+//       res.render('profile', {
+//         user: userFromDb,
 //       })
 //     })
 //   })
 
-router.get('/voting/:articlesId',checkUser, (req, res, next) => {
-  let articlesId = req.params.articlesId
-  Article.findById(articlesId)
-    .then(articleFromDb => {
-      res.render('voting', {
-        article: articleFromDb,
-        
-      })
+router.get("/voting/:articlesId", checkUser, (req, res, next) => {
+  let articlesId = req.params.articlesId;
+  Article.findById(articlesId).then(articleFromDb => {
+    res.render("voting", {
+      article: articleFromDb
+    });
+  });
+});
+
+
+
+router.post("/voting/:articlesId", (req, res, next) => {
+  let _owner = req.user.id;
+  let option = req.body.select1;
+  let visible = req.body.select2;
+  let _article = req.params.articlesId;
+  console.log('option', option, _owner, visible, _article);
+  if (option && visible){
+    Article.findById(_article)
+    .then( (article) =>{
+      for(let i = 0; i < article.voteYes.length; i++){
+        console.log('check if the same', article.voteYes[i], req.user.id)
+        if(article.voteYes[i].toString() === req.user.id.toString()){
+        console.log('check if the same', article.voteYes[i], req.user.id)
+          res.redirect("alreadyVoted");
+          return;
+        }
+
+      }
+      if(option === 'for'){
+        console.log('article', article.voteNo, option, req.user.id)
+        article.voteYes.push(req.user.id);
+        article.save()
+      }
+      else{
+        article.voteNo.push(req.user.id);
+        article.save()
+      }
+      Vote.create({ _owner, _article, option, visible })
+      .then(() => {
+        res.redirect("/");
+      });      
     })
-})
+    .catch(err =>{
+      res.render("auth/login", { message: "You have an error" });
+    })
+  }
+  else{
+    res.render("voting", { message: "please fill out the ID" });
+  }
+  });
+
+
 
 // router.post('/voting', (req,res,next)=>{
 //   console.log("working?")
-  
-  
+
 //   .then( => {
 //     res.redirect('/');
 //   }).catch( error => {
 //     console.log(error);
 //   })
 // });
-
-
-router.get('/profile/:userId', checkUser,(req, res, next) => {
-  let userId = req.params.userId
-  User.findById(userId) 
-    .then(userFromDb => {
-      res.render('profile', {
-        user: userFromDb,
-      })
-    })
-  })
-
-
 
 // router.post('/profile', (req, res, next) => {
 //   let userId = req.params.userId
@@ -121,10 +206,13 @@ router.get('/profile/:userId', checkUser,(req, res, next) => {
 //     })
 // })
 
-module.exports = router
+router.get("/profileList", (req, res, next) => {
+  
+  res.render("profile-list");
+});
 
 
-
+module.exports = router;
 
 
 
