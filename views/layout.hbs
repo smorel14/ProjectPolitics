@@ -61,10 +61,7 @@
         {{/unless}}
         {{#ifEquals user.status "not-confirmed"}}
         <li class="nav-item active">
-          <a class="nav-link" href="/auth/login">Login</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="/auth/signup">Signup</a>
+          <a class="nav-link" href="/auth/logout">Logout</a>
         </li>
         {{/ifEquals}}
 
@@ -83,8 +80,9 @@
     <a href="/auth/signup">Signup</a>
     <a href="/auth/logout">Logout</a>
   </nav> --}}
-
+<div class="container">
   {{{body}}}
+</div>
 
 
 

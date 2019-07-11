@@ -7,8 +7,10 @@ const articlesSchema = new Schema({
   imgArticle: {type: String, default: "/images/default-article-image.jpg"},
   link: String, 
   date: String,
-  votingDate: String
-
+  votingDate: String,
+  voteYes: [{type: Schema.Types.ObjectId, ref:"User", unique:true}],
+  //voteYes: {type: Array, default: []},
+  voteNo: [{type: Schema.Types.ObjectId, ref:"User", unique:true}]
 }, {
   timestamps: {
     createdAt: 'created_at',
