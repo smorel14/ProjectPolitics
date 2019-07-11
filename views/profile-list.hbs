@@ -2,9 +2,11 @@
   <h3 class="font-bold"> Search Users </h3><br>
 </div>
 
-<form class="form-inline">
+<form class="form-inline" method="POST" action="/profileList">
   <input class="form-control" type="search" placeholder="Search">
-  <button class="btn btn-outline-light" type="submit">Search</button>
+  <button class="btn btn-outline-dark" type="submit">Search</button>
+
+
 </form>
 
 
@@ -15,3 +17,10 @@
   <option value="2" name="L">Labor</option>
 
 </select><br><br>
+
+
+<div>
+  {{#each user}}
+ <ul><li>{{this.name}}</ul></li>
+  {{/each}}
+</div>
