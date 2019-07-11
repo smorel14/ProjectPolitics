@@ -87,7 +87,7 @@ let articles = [
     imgArticle: "https://ichef.bbci.co.uk/news/660/cpsprodpb/2847/production/_90911301_c5b48218-424a-41c4-9b6b-638600ec508f.jpg",
     link: "https://www.bbc.com/news/uk-politics-32810887",
     date: "08-07-2019",
-    votingDate: String
+    votingDate: 03/03/2019
   },
   {
     title: "No deal Brexit",

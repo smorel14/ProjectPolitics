@@ -7,8 +7,13 @@
       <a href="{{this.link}}">Full Article</a><br><br>
       <img src="{{this.imgArticle}}" alt="" width="100%"><br><br>
       {{!-- <button type="button" class="btn btn-outline-dark">Click Here to Vote</button> --}}
+      <div class="vote" >
+          <p class="for text-light" style= "width: {{this.voteYes.length}}00%"> For: {{this.voteYes.length}} </p>
+          <p class="against text-light" style= "width: {{this.voteNo.length}}00%"> Against: {{this.voteNo.length}}</p>
+      </div>
+      
       <a href="/voting/{{this._id}}" class="btn btn-outline-dark" role="button" aria-pressed="true">Click Here to Vote</a>
-      <a href="#" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Share</a><br><br><br><br>
+      <a href="#" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Share</a><br>
       
     </div>
   
