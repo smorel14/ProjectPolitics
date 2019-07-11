@@ -6,44 +6,6 @@ const User = require("../models/User");
 const Vote = require("../models/Vote");
 const { checkAdmin, checkUser } = require("../middlewares/middlewares");
 
-
-//Gonna leave this here in case of trouble
-
-// router.get("/", (req, res, next) => {
-//   Article.find().then(articlesFromDb => {
-//     res.render("index", {
-//       articles: articlesFromDb,
-//       title: "News"
-//     });
-//   });
-// });
-
-// router.get("/addArticle", (req, res, next) => {
-//   console.log("we are here");
-//   res.render("addArticle");
-// });
-
-// router.post("/addArticle", uploadCload.single("photo"), (req, res, next) => {
-//   const { title, description, link, date, votingDate } = req.body;
-//   const imgArticle = req.file.url;
-//   Article.create({ title, description, link, date, votingDate, imgArticle })
-//     .then(articles => {
-//       res.redirect("/");
-//     })
-//     .catch(error => {
-//       console.log(error);
-//     });
-// });
-
-// router.get("/editProfile", (req, res, next) => {
-//   res.render("edit-profile");
-// });
-
-// router.post("/editProfile", uploadCload.single("photo"), (req, res, next) => {
-//   let id = req.user.id;
-//   let imgArticle = "";
-//   if (req.file) {
-
 router.get("/", (req, res, next) => {
   Article.find().then(articles => {
    let yes = articles[0].voteYes;
@@ -115,13 +77,28 @@ router.get("/voting/:articlesId", (req, res, next) => {
   });
 });
 
+// router.get("/profile/:userId", (req, res, next) => {
+//   let userId = req.params.userId;
+//   User.findById(userId).then(user => {
+//     res.render("profile", {
+//       user: user
+//     });
+//   });
+// });
+
 router.get("/profile/:userId", (req, res, next) => {
   let userId = req.params.userId;
-  User.findById(userId).then(userFromDb => {
-    res.render("profile", {
-      user: userFromDb
-    });
-  });
+  //User.findById(userId).then(user => {
+    Vote.find({_owner : userId})
+    .populate("_owner")
+    .populate("_article")
+    .then((vote)=>{
+      console.log('vote', vote)
+      res.render("profile", {
+        vote: vote
+      });
+    })
+//  });
 });
 
 // router.get('/profile/:userId', checkUser,(req, res, next) => {
@@ -163,7 +140,7 @@ router.post("/voting/:articlesId", (req, res, next) => {
         }
 
       }
-      if(option === 'for'){
+      if(option === 'Supporting'){
         console.log('article', article.voteNo, option, req.user.id)
         article.voteYes.push(req.user.id);
         article.save()

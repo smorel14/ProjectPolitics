@@ -4,7 +4,7 @@ const Schema   = mongoose.Schema;
 const voteSchema = new Schema({
   _owner : {type: Schema.Types.ObjectId, ref:'User'},
   _article: {type: Schema.Types.ObjectId, ref:'Article'},
-  option: {type: String, required: true, enum: ['for', 'against']},
+  option: {type: String, required: true, enum: ['Supporting', 'Not-Supporting']},
   visible: {type: String, enum: ['visible', 'not visible']}
   
 }, {
