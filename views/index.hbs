@@ -1,21 +1,55 @@
 
-<div class="article-wrapper">
+<div class="article-wrapper container">
   {{#each articles}}
-    <div class="article-item border-bottom border-primary ">
+    <div class="article-item border-bottom border-primary mb-4">
       <h1>{{this.title}}</h1>
-      <p>{{this.description}}</p>
-      <a href="{{this.link}}">Full Article</a><br>
-      <img src="{{this.imgArticle}}" alt="" width="100%"><br><br>
+      <a> {{this.description}} </a> <br> <a class="mr-0" href="{{this.link}}">Full Article</a> </p>
+      <img src="{{this.imgArticle}}" alt="" width="100%">
       {{!-- <button type="button" class="btn btn-outline-dark">Click Here to Vote</button> --}}
-      <div class="vote" >
-          <p class="for text-light" style= "width: {{this.voteYes.length}}00%"> For: {{this.voteYes.length}} </p>
-          <p class="against text-light" style= "width: {{this.voteNo.length}}00%"> Against: {{this.voteNo.length}}</p>
+      <div class="vote mb-3" >
+          <p class="for text-light mb-0" style= "width: {{this.voteYes.length}}00%"> For: {{this.voteYes.length}} </p>
+          <p class="against text-light mb-0" style= "width: {{this.voteNo.length}}00%"> Against: {{this.voteNo.length}}</p>
       </div>
-      
-      <a href="/voting/{{this._id}}" class="btn btn-outline-dark" role="button" aria-pressed="true">Click Here to Vote</a>
-      <a href="#" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Share</a><br>
-      
+      <div class ="votingSharing mb-3">
+      <div> <a href="/voting/{{this._id}}" class="btn btn-outline-primary btn-light" role="button" aria-pressed="true">Click Here to Vote<a></a></div>
+      <div> <a href="#" class="btn btn-outline-primary btn-light" role="button" aria-pressed="true">Share</a></div>
+      </div>
+
     </div>
   
   {{/each}}
 </div>
+
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+

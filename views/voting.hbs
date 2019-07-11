@@ -1,14 +1,22 @@
-<div>
-  <div class="voting-wrapper">
+<div class="container">
 
-    {{!-- <h3 class="font-bold"> Voting </h3> --}}
-    <h3>{{article.title}}</h3>
-    <p>{{article.description}}</p>
-    <a href="{{article.link}}">Full Article</a><br><br>
+    <div class="article-item border-bottom border-primary mb-4">
+      <h1>{{article.title}}</h1>
+      <a> {{article.description}} </a> <br> <a class="mr-0" href="{{article.link}}">Full Article</a> </p>
+      <img src="{{article.imgArticle}}" alt="" width="100%">
+      {{!-- <button type="button" class="btn btn-outline-dark">Click Here to Vote</button> --}}
+      <div class="vote mb-3" >
+          <p class="for text-light mb-0" style= "width: {{article.voteYes.length}}00%"> For: {{article.voteYes.length}} </p>
+          <p class="against text-light mb-0" style= "width: {{article.voteNo.length}}00%"> Against: {{article.voteNo.length}}</p>
+      </div>
+    </div>
 
-  </div>
-  <img src="{{article.imgArticle}}" alt="" width="100%">
-  <br><br>
+
+
+
+
+
+  
   <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
       <form action="/voting/{{article._id}}" method="POST">
@@ -16,34 +24,23 @@
           <div class="col-auto my-1">
             <h4>Time to Vote</h4><br>
             {{!-- <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label> --}}
-              <p> For/Against</p>
             <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name= "select1" >
-              <option value="forAgainst" name="option" disabled selected>For/Agains</option>
+              <option value="forAgainst" name="option" disabled selected>For/Agains this Policy?</option>
               <option value="Supporting" name="option">Supporting</option>
               <option value="Not-Supporting" name="option">Not-Supporting</option>
 
             </select><br><br>
             <select class="custom-select mr-sm-2" id="CustomSelect" name= "select2">
-              <option value="disabled" name="option" disabled selected>Profile Visability</option>
+              <option value="disabled" name="option" disabled selected>Make your choice visible to others?</option>
               <option value="visible" name="visible">Visible</option>
               <option value="not visible" name="visible">Not Visible</option>
 
             </select><br><br>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
           </div>
         </div>
       </form>
     </ul>
   </nav><br>
 
-  {{!-- <input class="form-control" type="text" placeholder="Default input"> --}}
-  <a href="#" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Share</a><br><br><br><br>
-
-
-</div>
-
-<nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-center">
-
-  </ul>
-</nav>
+  </div>
