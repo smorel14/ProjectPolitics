@@ -204,6 +204,50 @@ router.get("/profileList", (req, res, next) => {
   res.render("profile-list");
 });
 
+router.post("/profileList", (req, res, next) => {
+    let userId = req.params.userId;
+    let name = req.body.name
+    let searchName = new RegExp(`${name}`, "i")
+    console.log("name is", name)
+    User.find({name: searchName})
+      .then(userFromDb => {
+        console.log("user coming", userFromDb)
+      res.render('profile-list', {
+        user: userFromDb,
+        userId: userId
+    });
+  })
+});
+
+//User.find({name: name})
+
+
+  // let party = req.body.party
+  //   User.find({party: party})
+  //     .then(partyFromDb =>{
+  //       res.render('profile-list', {
+  //       party : partyFromDb  
+
+  //     })
+  //   })
+    
+
+// router.post("/profileList", (req, res, next) => {
+//   let userId = req.params.userId
+
+//   User.find({
+//     $text: {
+//       $search: userId
+//     }
+//   }, {
+//     _id: 0,
+//   }, function(err, data){
+//     res.json(data);
+    
+//   }).limit(4);
+// });
+
+
 
 module.exports = router;
 

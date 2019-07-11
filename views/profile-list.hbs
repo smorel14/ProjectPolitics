@@ -2,16 +2,34 @@
   <h3 class="font-bold"> Search Users </h3><br>
 </div>
 
-<form class="form-inline">
-  <input class="form-control" type="search" placeholder="Search">
-  <button class="btn btn-outline-light" type="submit">Search</button>
-</form>
+<form class="form-inline" method="POST" action="/profileList">
+  <input class="form" type="text" placeholder="Ned Stark" name="name">
+  <button class="btn btn-outline-dark" type="submit">Search</button>
 
 
-//sample
-<select class="custom-select mr-sm-2" id="CustomSelect" name="select2">
+</form><br>
+
+
+<form action="/profileList">
+
+<select class="custom-select mr-sm-2" id="CustomSelect" name="party">
   <option selected>Search by Political Party</option>
-  <option value="1" name="C">Conservatives</option>
-  <option value="2" name="L">Labor</option>
+  <option value="1" name="party">Conservatives</option>
+  <option value="2" name="party">Labor</option>
 
-</select><br><br>
+</select>
+</form><br><br><br>
+
+
+<div>
+  {{#each user}}
+  <ul>
+    <h4></h4>{{this.name}}</h4>
+    <img src="{{this.profilePicture}}" alt="" width="20%">
+    <a href="/profile/{{this._id}}" class="btn btn-outline-dark" role="button" aria-pressed="true">See {{this.name}} votes </a>
+    
+  </ul>
+  {{/each}}
+</div>
+
+
