@@ -1,4 +1,54 @@
+
+
+
+<div class="profile-pic">
+  <img src="{{vote.[0]._owner.profilePicture}}" alt="" width="40%">
+</div>
+<br>
+<div class= "profile-email">
+  <h4>{{vote.[0]._owner.name}}</h4><br>
+</div>
+
 <div>
+  <div class="profile-item">
+    <p><strong>Party:</strong> 
+      {{vote.[0]._owner.party}}</p><br>
+
+    <p><strong>Political View:</strong>
+    {{vote.[0]._owner.politicalView}}</p>
+
+    <p>{{votes.option}}</p>
+
+  </div>
+</div>
+
+{{#each vote}}
+{{#ifEquals this.visible 'visible'}}
+<div class="bg-primary text-light w-100">{{this.option}}</div>
+
+<div> {{this._article.title}}</div>
+      <a href="{{this._article.link}}">Full Article</a><br><br>
+      <img src="{{this._article.imgArticle}}" alt="" width="100%"><br><br>
+ <div class="vote" >
+          <p class="for text-light" style= "width: {{this._article.voteYes.length}}00%"> For: {{this._article.voteYes.length}} </p>
+          <p class="against text-light" style= "width: {{this._article.voteNo.length}}00%"> Against: {{this._article.voteNo.length}}</p>
+      </div>
+      
+      <a href="/voting/{{this._article._id}}" class="btn btn-outline-dark" role="button" aria-pressed="true">Click Here to Vote</a>
+      <a href="#" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Share</a><br>
+
+
+{{/ifEquals}}
+{{/each}}
+
+    {{!-- <div class="article-item border-bottom border-primary ">
+
+    </div> --}}
+
+
+
+
+{{!-- <div>
   <h3 class="font-bold"> Profile </h3><br>
 </div>
 
@@ -18,7 +68,7 @@
     <p><strong>Political View:</strong>
     {{user.politicalView}}</p>
 
-    {{!-- <p>{{votes.option}}</p> --}}
+    <p>{{votes.option}}</p>
 
   </div>
-</div>
+</div> --}}

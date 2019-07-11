@@ -1,8 +1,10 @@
 $primary: #0a1376; // To change the primary color
+
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
 
 body {
   font-family: "Roboto", sans-serif; // font-family: 'Lora', serif;
+  font-size: 15px;
   background-color: #f0ffff;
 }
 
@@ -12,6 +14,11 @@ body {
 
 a {
   color: #00b7ff;
+}
+
+h1{
+  font-size: 20px;
+  font-family: "Roboto Black"
 }
 
 .container{

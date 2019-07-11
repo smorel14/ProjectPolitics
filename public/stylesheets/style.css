@@ -7022,6 +7022,7 @@ a.text-dark:hover, a.text-dark:focus {
 
 body {
   font-family: "Roboto", sans-serif;
+  font-size: 15px;
   background-color: #f0ffff; }
 
 .font-bold {
@@ -7029,6 +7030,10 @@ body {
 
 a {
   color: #00b7ff; }
+
+h1 {
+  font-size: 20px;
+  font-family: "Roboto Black"; }
 
 .container {
   padding: 10px;
