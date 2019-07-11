@@ -45,10 +45,13 @@ const { checkAdmin, checkUser } = require("../middlewares/middlewares");
 //   if (req.file) {
 
 router.get("/", (req, res, next) => {
-  Article.find().then(articlesFromDb => {
+  Article.find().then(articles => {
+   let yes = articles[0].voteYes;
+   console.log(yes)
     res.render("index", {
-      articles: articlesFromDb,
-      title: "News"
+      articles: articles,
+      title: "News",
+     // percentageVotes: 
     });
   });
 });
@@ -63,6 +66,7 @@ router.post(
   checkAdmin,
   uploadCload.single("photo"),
   (req, res, next) => {
+    console.log("we are in");
     const { title, description, link, date, votingDate } = req.body;
     const imgArticle = req.file.url;
     Article.create({ title, description, link, date, votingDate, imgArticle })
@@ -154,7 +158,7 @@ router.post("/voting/:articlesId", (req, res, next) => {
         console.log('check if the same', article.voteYes[i], req.user.id)
         if(article.voteYes[i].toString() === req.user.id.toString()){
         console.log('check if the same', article.voteYes[i], req.user.id)
-          res.redirect("alreadyVoted");
+          res.render("alreadyVoted");
           return;
         }
 

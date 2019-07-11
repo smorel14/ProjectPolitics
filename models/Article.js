@@ -8,9 +8,9 @@ const articlesSchema = new Schema({
   link: String, 
   date: String,
   votingDate: String,
-  voteYes: [{type: Schema.Types.ObjectId, ref:"User", unique:true}],
+  voteYes: [{type: Schema.Types.ObjectId, ref:"User"}],
   //voteYes: {type: Array, default: []},
-  voteNo: [{type: Schema.Types.ObjectId, ref:"User", unique:true}]
+  voteNo: [{type: Schema.Types.ObjectId, ref:"User"}]
 }, {
   timestamps: {
     createdAt: 'created_at',

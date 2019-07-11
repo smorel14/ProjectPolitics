@@ -7058,4 +7058,16 @@ a {
   flex-wrap: wrap;
   justify-content: center; }
 
+.vote {
+  display: flex;
+  justify-content: space-between; }
+
+.for {
+  background-color: #0A1376; }
+
+.against {
+  display: flex;
+  justify-content: flex-end;
+  background-color: #7C9BD7; }
+
 /*# sourceMappingURL=style.css.map */
