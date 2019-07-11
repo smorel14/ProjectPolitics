@@ -24,22 +24,29 @@
 
 {{#each vote}}
 {{#ifEquals this.visible 'visible'}}
-<div class="bg-primary text-light w-100">{{this.option}}</div>
+<div class="bg-primary text-light btn btn-primary btn-sm"><h1>{{this.option}}</h1></div>
 
-<div> {{this._article.title}}</div>
-      <a href="{{this._article.link}}">Full Article</a><br><br>
-      <img src="{{this._article.imgArticle}}" alt="" width="100%"><br><br>
- <div class="vote" >
-          <p class="for text-light" style= "width: {{this._article.voteYes.length}}00%"> For: {{this._article.voteYes.length}} </p>
-          <p class="against text-light" style= "width: {{this._article.voteNo.length}}00%"> Against: {{this._article.voteNo.length}}</p>
+    <div class="article-item border-bottom border-primary mb-4">
+      <h1>{{this._article.title}}</h1>
+      <a <a>  {{this._article.description}} </a> <br> <a class="mr-0" href="{{this._article.link}}">Full Article</a> </p>
+      <img src="{{this._article.imgArticle}}" alt="" width="100%">
+      {{!-- <button type="button" class="btn btn-outline-dark">Click Here to Vote</button> --}}
+      <div class="vote mb-3" >
+          <p class="for text-light mb-0" style= "width: {{this._article.voteYes.length}}00%"> For: {{this._article.voteYes.length}} </p>
+          <p class="against text-light mb-0" style= "width: {{this._article.voteNo.length}}00%"> Against: {{this._article.voteNo.length}}</p>
       </div>
-      
-      <a href="/voting/{{this._article._id}}" class="btn btn-outline-dark" role="button" aria-pressed="true">Click Here to Vote</a>
-      <a href="#" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Share</a><br>
+      <div class ="votingSharing mb-3">
+      <div href="/voting/{{this._article._id}}" class="btn btn-outline-primary btn-light" role="button" aria-pressed="true">Click Here to Vote</div>
+      <div href="#" class="btn btn-outline-primary btn-light" role="button" aria-pressed="true">Share</div>
+      </div>
 
+    </div>
 
 {{/ifEquals}}
 {{/each}}
+
+
+
 
     {{!-- <div class="article-item border-bottom border-primary ">
 

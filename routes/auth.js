@@ -77,7 +77,7 @@ router.post("/signup", (req, res, next) => {
         html: 'Please click on the following link to create your account: <br> http://localhost:3000/auth/newlogin/'+ token +'<br>'
       })
       .then(() => {
-        res.redirect("auth/emailConfirmation");
+        res.redirect("/");
       })
       .catch(next)
     })
@@ -102,11 +102,11 @@ router.get("/newlogin/:confirmationCode", (req,res,next) => {
     console.log('confirmation code', user[0].confirmation_code )
     console.log('sentVerification',sentVerification )
     if(user[0].confirmation_code === sentVerification){
-      console.log("I AM HERE")
       console.log('user.id', user[0].id)
       User.findByIdAndUpdate(user[0].id, {status: "confirmed"}).then(()=>{
-      user[0].login
-      res.redirect("/");
+          //passport.authenticate('local')(req, res, function () {
+          res.redirect('/');
+       // })
       })
       .catch(err =>{
         res.render("auth/login", { message: "You have an error" });
