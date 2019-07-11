@@ -182,9 +182,9 @@ router.get("/profileList", (req, res, next) => {
 });
 
 router.post("/profileList", (req, res, next) => {
-    //let id = req.user.id;
+    let userId = req.params.userId
 
-    User.find()
+    User.find(userId)
       .then(userFromDb => {
         console.log("user coming", userFromDb)
       res.render('profile-list', {
@@ -193,4 +193,19 @@ router.post("/profileList", (req, res, next) => {
   })
 });
 
+
+// router.post("/profileList", (req, res, next) => {
+//   let userName = req.params.user;
+
+//   User.find()
+//     .then(userFromDb => {
+//       console.log("user coming", userFromDb)
+//     res.render('profile-list', {
+//       user: userFromDb
+//   });
+// })
+// });
+
 module.exports = router;
+
+
