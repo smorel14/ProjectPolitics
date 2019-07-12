@@ -26,18 +26,21 @@ mongoose
 
 let users = [
   {
-    password: bcrypt.hashSync("alice", bcrypt.genSaltSync(bcryptSalt)),
-    name: "alice",
-    party: "Labour",
-    politicalView: "Undecided",
-    role: "user",
+    email: "david",
+    profilePicture: "/images/cameron.jpg",
+    password: bcrypt.hashSync("david", bcrypt.genSaltSync(bcryptSalt)),
+    name: "David Cameron",
+    party: "Conservative",
+    politicalView: "Do you miss me?",
+    role: "admin",
     status: "confirmed"
   },
+  
   {
     email: "bob",
     profilePicture: "/images/bob1.jpg",
     password: bcrypt.hashSync("bob", bcrypt.genSaltSync(bcryptSalt)),
-    name: "bob",
+    name: "Bob",
     party: "Labour",
     politicalView: "Changing the world",
     role: "admin",
@@ -87,7 +90,41 @@ let users = [
     politicalView: "Get back to work",
     role: "admin",
     status: "confirmed"
-  }
+  },
+
+  {
+    email: "nince",
+    profilePicture: "/images/vince.jpeg",
+    password: bcrypt.hashSync("vince", bcrypt.genSaltSync(bcryptSalt)),
+    name: "Vince Cable",
+    party: "Liberal Democrats",
+    politicalView: "?",
+    role: "admin",
+    status: "confirmed"
+  },
+
+  {
+    email: "nigel",
+    profilePicture: "/images/Nigel.jpeg",
+    password: bcrypt.hashSync("nigel", bcrypt.genSaltSync(bcryptSalt)),
+    name: "Nigel Farage",
+    party: "Brexit Party",
+    politicalView: "Go brexit",
+    role: "admin",
+    status: "confirmed"
+  },
+
+  {
+    email: "alice",
+    password: bcrypt.hashSync("alice", bcrypt.genSaltSync(bcryptSalt)),
+    name: "Alice",
+    party: "Labour",
+    politicalView: "Undecided",
+    role: "user",
+    status: "confirmed"
+  },
+
+  
 ];
 
 User.deleteMany()
@@ -117,6 +154,17 @@ let articles = [
     imgArticle:
       "https://ichef.bbci.co.uk/news/660/cpsprodpb/2847/production/_90911301_c5b48218-424a-41c4-9b6b-638600ec508f.jpg",
     link: "https://www.bbc.com/news/uk-politics-32810887",
+    date: "08-07-2019",
+    votingDate: 03 / 09 / 2019
+  },
+  {
+    title:
+      "Do you want free movement of people between UK and EU? ",
+    description:
+      "Freedom of movement for EU workers has been front and centre in the Brexit debate. Fear of foreign workers undercutting the wages and working conditions of locals helped to fuel the leave campaign. Now EU nationals – Poles and others – who have called Britain home for years, sometimes decades, face an uncertain future in the UK.",
+    imgArticle:
+      "https://2ihmoy1d3v7630ar9h2rsglp-wpengine.netdna-ssl.com/wp-content/uploads/2015/12/151223-passport.jpg",
+    link: "https://www.theguardian.com/commentisfree/2019/jan/16/freedom-movement-euroep-foreign-posted-workers-eu",
     date: "08-07-2019",
     votingDate: 03 / 09 / 2019
   },
