@@ -16,13 +16,18 @@
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <a class="navbar-brand font-bold" href="#">{{title}}</a>
+
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
       aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
+
+
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+
         <li class="nav-item active">
           <a class="nav-link" href="/">News</a>
         </li>
@@ -42,7 +47,7 @@
           <a class="nav-link" href="/editProfile">Edit my profile</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="/profileList">Seach Users</a>
+          <a class="nav-link" href="/profileList">Search Users</a>
         </li>
         <li class="nav-item active">
           <a class="nav-link" href="/auth/logout">Logout</a>
@@ -65,12 +70,14 @@
         </li>
         {{/ifEquals}}
 
+        <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search">
+        {{!-- <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button> --}}
+      </form>
+
 
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search">
-        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-      </form>
+
     </div>
   </nav>
 
@@ -98,3 +105,21 @@
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+{{!-- 
+
+<div class="profile-list mt-3 mb-3">
+  <form class="form-inline" method="POST" action="/searchArticle">
+    <input class="form btn-lg" type="text" placeholder="Search Article" name="article">
+    <button class="btn btn-primary pt-2 pb-2 ml-3" type="submit">Search</button>
+  </form><br><br>
+</div> --}}
+

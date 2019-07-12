@@ -247,17 +247,18 @@ router.post("/voting/:articlesId", (req, res, next) => {
 
 
 
-router.get("/profileList", (req, res, next) => {
+router.get("/profileList", checkUser, (req, res, next) => {
   User.find().then(userFromDb => {
     console.log("user coming", userFromDb);
     res.render("profile-list", {
-      user: userFromDb
+      use: userFromDb,
+      title: "Profile List"
       // userId: userId
     });
   });
 });
 
-router.post("/profileList", (req, res, next) => {
+router.post("/profileList", checkUser, (req, res, next) => {
   //let userId = req.params.userId;
   let name = req.body.name;
   let searchName = new RegExp(`${name}`, "i");
@@ -270,6 +271,20 @@ router.post("/profileList", (req, res, next) => {
     });
   });
 });
+
+// router.post("/searchArticle", (req, res, next) => {
+  
+//   let article = req.body.article;
+//   let searchArticle = new RegExp(`${article}`, "i");
+//   console.log("name is", article);
+//   Article.find({ article: searchArticle }).then(articleFromBd => {
+//     console.log("article coming", articleFromBd);
+//     res.render("/", {
+//       article: articleFromBd
+      
+//     });
+//   });
+// });
 
 
 router.post("/send-email", (req, res, next) => {
