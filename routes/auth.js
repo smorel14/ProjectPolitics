@@ -107,9 +107,13 @@ router.get("/newlogin/:confirmationCode", (req,res,next) => {
     console.log('sentVerification',sentVerification )
     if(user[0].confirmation_code === sentVerification){
       console.log('user.id', user[0].id)
-      User.findByIdAndUpdate(user[0].id, {status: "confirmed"}).then(()=>{
+      User.findByIdAndUpdate(user[0].id, {status: "confirmed"}).then((updatedUser)=>{
+          console.log(updatedUser);
+          req.login(updatedUser, () => {
+            console.log('here we are')
+            res.redirect('/');
+          })
           //passport.authenticate('local')(req, res, function () {
-          res.redirect('/');
        // })
       })
       .catch(err =>{
