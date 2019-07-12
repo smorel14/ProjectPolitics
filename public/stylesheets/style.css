@@ -7035,6 +7035,10 @@ h1 {
   font-size: 20px;
   font-family: "Roboto Black"; }
 
+.title {
+  font-size: 15px;
+  font-family: "Roboto Black"; }
+
 .container {
   padding: 20px;
   margin-bottom: 20px; }

@@ -1,81 +1,56 @@
-
-
-
-<div class="profile-pic">
-  <img src="{{vote.[0]._owner.profilePicture}}" alt="" width="40%">
-</div>
-<br>
-<div class= "profile-email">
-  <h4>{{vote.[0]._owner.name}}</h4><br>
-</div>
-
-<div>
-  <div class="profile-item">
-    <p><strong>Party:</strong> 
-      {{vote.[0]._owner.party}}</p><br>
-
-    <p><strong>Political View:</strong>
-    {{vote.[0]._owner.politicalView}}</p>
-
-    <p>{{votes.option}}</p>
-
-  </div>
-</div>
-
-{{#each vote}}
-{{#ifEquals this.visible 'visible'}}
-<div class="bg-primary text-light btn btn-primary btn-sm"><h1>{{this.option}}</h1></div>
-
-    <div class="article-item border-bottom border-primary mb-4">
-      <h1>{{this._article.title}}</h1>
-      <a <a>  {{this._article.description}} </a> <br> <a class="mr-0" href="{{this._article.link}}">Full Article</a> </p>
-      <img src="{{this._article.imgArticle}}" alt="" width="100%">
-      {{!-- <button type="button" class="btn btn-outline-dark">Click Here to Vote</button> --}}
-      <div class="vote mb-3" >
-          <p class="for text-light mb-0" style= "width: {{this._article.voteYes.length}}00%"> For: {{this._article.voteYes.length}} </p>
-          <p class="against text-light mb-0" style= "width: {{this._article.voteNo.length}}00%"> Against: {{this._article.voteNo.length}}</p>
-      </div>
-      <div class ="votingSharing mb-3">
-      <div href="/voting/{{this._article._id}}" class="btn btn-outline-primary btn-light" role="button" aria-pressed="true">Click Here to Vote</div>
-      <div href="#" class="btn btn-outline-primary btn-light" role="button" aria-pressed="true">Share</div>
-      </div>
-
+<div class="container">
+  <div class="border-bottom border-primary mb-4">
+    <div class="profile-pic">
+      <img src="{{user.profilePicture}}" alt="" width="40%">
+    </div>
+    <br>
+    <div class="profile-email">
+      <h1>{{user.name}}</h1><br>
     </div>
 
-{{/ifEquals}}
-{{/each}}
+    <div>
+      <div class="profile-item">
+        <div>
+          <a class="title"><b>Party:</b> </b> <br>
+            <a>{{user.party}} </a>
+        </div><br>
+        <div>
+          <a class="title"><b>Political View:</b> </b> <br>
+            <a>{{user.politicalView}} </a>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
+  
+  {{#each vote}}
+  {{#ifEquals this.visible 'visible'}}
+  <div class="bg-primary text-light btn btn-primary btn-sm mb-3">
+    <h1>{{this.option}}</h1>
+  </div>
 
-
-    {{!-- <div class="article-item border-bottom border-primary ">
-
-    </div> --}}
-
-
-
-
-{{!-- <div>
-  <h3 class="font-bold"> Profile </h3><br>
-</div>
-
-<div class="profile-pic">
-  <img src="{{user.profilePicture}}" alt="" width="40%">
-</div>
-<br>
-<div class= "profile-email">
-  <h4>{{user.name}}</h4><br>
-</div>
-
-<div>
-  <div class="profile-item">
-    <p><strong>Party:</strong> 
-      {{user.party}}</p><br>
-
-    <p><strong>Political View:</strong>
-    {{user.politicalView}}</p>
-
-    <p>{{votes.option}}</p>
+  <div class="article-item border-bottom border-primary mb-4">
+    <h1>{{this._article.title}}</h1>
+    <a <a> {{this._article.description}} </a> <br> <a class="mr-0" href="{{this._article.link}}">Full Article</a> </p>
+    <img src="{{this._article.imgArticle}}" alt="" width="100%">
+    {{!-- <button type="button" class="btn btn-outline-dark">Click Here to Vote</button> --}}
+    <div class="vote mb-3">
+      <p class="for text-light mb-0" style="width: {{this._article.voteYes.length}}00%"> For:
+        {{this._article.voteYes.length}} </p>
+      <p class="against text-light mb-0" style="width: {{this._article.voteNo.length}}00%"> Against:
+        {{this._article.voteNo.length}}</p>
+    </div>
+    <div class="votingSharing mb-3">
+      <div href="/voting/{{this._article._id}}" class="btn btn-outline-primary btn-light" role="button"
+        aria-pressed="true">Click Here to Vote</div>
+      <div href="#" class="btn btn-outline-primary btn-light" role="button" aria-pressed="true">Share</div>
+    </div>
 
   </div>
-</div> --}}
+
+  {{/ifEquals}}
+  {{/each}}
+
+
+</div>
