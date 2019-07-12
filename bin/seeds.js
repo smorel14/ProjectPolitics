@@ -163,7 +163,7 @@ let articles = [
     description:
       "Freedom of movement for EU workers has been front and centre in the Brexit debate. Fear of foreign workers undercutting the wages and working conditions of locals helped to fuel the leave campaign. Now EU nationals – Poles and others – who have called Britain home for years, sometimes decades, face an uncertain future in the UK.",
     imgArticle:
-      "https://i.guim.co.uk/img/media/0d1e9bdf8ad97c99a275ba04366c71fc18ec0b9d/0_16_4000_2400/master/4000.jpg?width=620&quality=45&auto=format&fit=max&dpr=2&s=4093d3454d31aa933ed161d24aa820fb",
+      "https://2ihmoy1d3v7630ar9h2rsglp-wpengine.netdna-ssl.com/wp-content/uploads/2015/12/151223-passport.jpg",
     link: "https://www.theguardian.com/commentisfree/2019/jan/16/freedom-movement-euroep-foreign-posted-workers-eu",
     date: "08-07-2019",
     votingDate: 03 / 09 / 2019
