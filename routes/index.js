@@ -86,17 +86,40 @@ router.post(
 router.get("/profile/:userId", (req, res, next) => {
   let userId = req.params.userId;
   //User.findById(userId).then(user => {
-  Vote.find({ _owner: userId })
-    .populate("_owner")
-    .populate("_article")
-    .then(vote => {
-      console.log("vote", vote);
+
+  Promise.all(
+    [
+      User.findById(userId),
+      Vote.find({ _owner: userId })
+      .populate("_owner")
+      .populate("_article")
+    ])
+    .then((responses) => {
       res.render("profile", {
-        vote: vote
-      });
-    });
-  //  });
+        user: responses[0],
+        vote: responses[1]
+    })
+  });
 });
+
+
+  // Vote.find({ _owner: userId })
+  //   .populate("_owner")
+  //   .populate("_article")
+  //   .then(vote => {
+  //     console.log("vote", vote);
+  //     res.render("profile", {
+  //       vote: vote
+  //     });
+  //   });
+
+
+
+// Promise.all([
+//   Article.find(),
+//   Article.findById(articlesId)
+// ]).then(responses => {
+
 
 
 // router.get("/profile/:userId", (req, res, next) => {

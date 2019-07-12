@@ -1,16 +1,17 @@
 
+<div class="container">
 
 <img alt="error" width="50%" src="{{user.profilePicture}}" <div class="mr-3 ml-3">
 
-
 <form action="/editProfile" method="POST" enctype="multipart/form-data">
 
-  <div class="form-group">
-    <label for="profilePicture">Profile Picture</label>
-    <input id="profilePicture" type="file" class="form-control form-input" name="photo">
-  </div>
-  <div class="form-group">
-    <label for="name">Name</label><h4>Time to Vote</h4>
+<div class="custom-file mt-3">
+  <input type="file" class="custom-file-input" id="profilePicture" name="photo">
+  <label class="custom-file-label" for="profilePicture">Choose a profile picture </label>
+</div>
+
+  <div class="form-group mt-3">
+    <label for="name">Name:</label>
     <input id="name" type="text" name="name" class="form-control" value={{user.name}}>
   </div>
   <div class="form-group">
@@ -42,10 +43,17 @@
     </select>
   </div>
 
-  <button class="btn-primary"> Submit Form </button>
+  <button class="btn btn-primary btn-lg btn-block"> Submit Form </button>
+
+
 </form>
 
 </div>
+
+
+
+</div>
+
 
 
 
