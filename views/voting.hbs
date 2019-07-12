@@ -1,3 +1,6 @@
+  
+
+
 <div class="container">
 
     <div class="article-item border-bottom border-primary mb-4">
@@ -13,6 +16,10 @@
 
 
 
+ {{#if message }}
+    <div class="alert alert-warning" role="alert"> {{ message }} </div>
+    {{/if}}
+
 
 
 
@@ -22,7 +29,6 @@
       <form action="/voting/{{article._id}}" method="POST">
         <div class="form-row align-items-center">
           <div class="col-auto my-1">
-            <h4>Time to Vote</h4><br>
             {{!-- <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label> --}}
             <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name= "select1" >
               <option value="forAgainst" name="option" disabled selected>For/Agains this Policy?</option>

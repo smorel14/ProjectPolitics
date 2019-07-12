@@ -168,15 +168,17 @@ router.get("/voting/:articlesId", (req, res, next) => {
 
     console.log('voting time')
     for (let i = 0; i < responses[1].voteYes.length; i++){
-      console.log('responses[1].voteYes[i].toString()', responses[1].voteYes[i].toString(), req.user.id.toString())
+     // console.log('responses[1].voteYes[i].toString()', responses[1].voteYes[i].toString(), req.user.id.toString())
       if (responses[1].voteYes[i].toString() === req.user.id.toString()){
         message = "You can't vote more than once";
       }
     }
-    for (let i = 0; i < responses[1].voteNo.length; i++){
-      console.log('responses[1].voteNo[i].toString()', responses[1].voteYes[i].toString(), req.user.id.toString())
-      if (responses[1].voteYes[i].toString() === req.user.id.toString()){
+    for (let j = 0; j < responses[1].voteNo.length; j++){
+
+     // console.log('responses[1].voteNo[i].toString()', responses[1].voteYes[i].toString(), req.user.id.toString())
+      if (responses[1].voteNo[j].toString() === req.user.id.toString()){
         message = "You can't vote more than once";
+        console.log('message', message)
       }
     }
     
@@ -184,6 +186,7 @@ router.get("/voting/:articlesId", (req, res, next) => {
     if (message === ''){
       res.render("voting", {
         article: responses[1],
+        message: req.query.errorMessage,
         title: "Vote",
       });
     }
@@ -223,7 +226,7 @@ router.post("/voting/:articlesId", (req, res, next) => {
 
       }
       if(option === 'Supporting'){
-        console.log('article', article.voteNo, option, req.user.id)
+       // console.log('article', article.voteNo, option, req.user.id)
         article.voteYes.push(req.user.id);
         article.save()
       }
@@ -241,7 +244,8 @@ router.post("/voting/:articlesId", (req, res, next) => {
     })
   }
   else{
-    res.render("/", { message: "please fill out the ID" });
+    console.log('error is here')
+    res.redirect(`/voting/${_article}?errorMessage= To vote you need to select one of the following options:`);
   }
 });
 
@@ -312,125 +316,3 @@ router.post("/send-email", (req, res, next) => {
 
 module.exports = router;
 
-// router.get('/', (req, res, next) => {
-//   let totalVotesList = [];
-//   Article.find()
-//     .then(articles => {
-//       articles.map( article => {
-//         Vote.find({_articleID : article.id})
-//         .then(votes => {
-//           //console.log('article', article)
-//          // console.log('vote', votes.length)
-//           totalVotesList.push([article.id, votes.length])
-//         })
-//       })
-//       console.log('totalVotesList', totalVotesList)
-//       //console.log('article2', articles)
-//       })
-//       res.render('index', {
-//         totalVotesList: totalVotesList,
-//         title: "News"
-//     })
-//     })
-
-// router.get('/', (req, res, next) => {
-//   let totalVotesList = [];
-//   let newidea = [];
-//   Article.find()
-//     .then(articles => {
-//       articles.map( article => {
-//         Vote.find({_articleID : article.id})
-//         .then(votes => {
-//           //console.log('article', article)
-//          // console.log('vote', votes.length)
-//           totalVotesList.push([article.id, votes.length])
-//         })
-//         .then(() => {
-//          console.log(totalVotesList)
-//         })
-//       })
-//       //console.log('totalVotesList', newidea)
-//       //console.log('article2', articles)
-//       })
-//       res.render('index', {
-//         totalVotesList: totalVotesList,
-//         title: "News"
-//     })
-//     })
-
-// router.get('/', (req, res, next) => {
-//   let totalVotesList = [];
-//   Article.find()
-//     .then(articles => {
-//       for(let i = 0; i < articles.length; i++){
-//         Vote.find({_articleID : articles[i].id})
-//         .then(votes => {
-//           //console.log('article', article)
-//          // console.log('vote', votes.length)
-//          console.log(i, 'totalVotesList', totalVotesList)
-//          totalVotesList = totalVotesList.push([articles[i].id, votes.length])
-//         })
-//       }
-//       console.log('totalVotesList', totalVotesList)
-//       //console.log('article2', articles)
-//       })
-//       res.render('index', {
-//         totalVotesList: totalVotesList,
-//         title: "News"
-//     })
-//     })
-
-// router.get('/', (req, res, next) => {
-//   Vote.find()
-//   .populate("_articleID")
-//   .then (votes => {
-
-//   })
-
-// })
-
-//   router.get('/', (req, res, next) => {
-//     Promise.all([
-//       Article.find(),
-//       Vote.find({_articleID : articles[i].id})
-//     ]).then((responses)=>{
-//       res.render('index', {
-//         responses: responses,
-//         title: "News"
-//     })
-//   })
-// })
-
-// router.get('/', (req, res, next) => {
-//   let totalVotesList = [];
-//   Article.find()
-//     .then(articles => {
-//       for(let i = 0; i < articles.length; i++){
-//         Vote.find({_articleID : articles[i].id})
-//         .then(votes => {
-//           console.log('votes', votes[0])
-//           res.render('index', {
-//             articles: articles,
-//             title: "News",
-//         })
-//     })
-//   }
-//   })
-// })
-
-//     router.get('/', (req, res, next) => {
-//       let listVotes
-//     Article.find()
-//       .then(articles => {
-//         for(let i = 0; i < articles.length; i++){
-//           Vote.find({_articleID : articles[i].id})
-//           .then(votes => {
-//           })
-//     }
-//     res.render('index', {
-//       articles: articles,
-//       votes: votes,
-//       title: "News",
-// })
-//     })
-//   })

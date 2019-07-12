@@ -154,8 +154,8 @@ let articles = [
     imgArticle:
       "https://ichef.bbci.co.uk/news/660/cpsprodpb/2847/production/_90911301_c5b48218-424a-41c4-9b6b-638600ec508f.jpg",
     link: "https://www.bbc.com/news/uk-politics-32810887",
-    date: "08-07-2019",
-    votingDate: 03 / 09 / 2019
+    date: "2019-07-08",
+    votingDate: "2019-09-03"
   },
   {
     title:
@@ -165,8 +165,8 @@ let articles = [
     imgArticle:
       "https://2ihmoy1d3v7630ar9h2rsglp-wpengine.netdna-ssl.com/wp-content/uploads/2015/12/151223-passport.jpg",
     link: "https://www.theguardian.com/commentisfree/2019/jan/16/freedom-movement-euroep-foreign-posted-workers-eu",
-    date: "08-07-2019",
-    votingDate: 03 / 09 / 2019
+    date: "2018-07-13",
+    votingDate: "2019-09-03"
   },
   {
     title: "What is your opinion on 'no deal Brexit'?",
@@ -174,8 +174,8 @@ let articles = [
     imgArticle:
       "https://g8fip1kplyr33r3krz5b97d1-wpengine.netdna-ssl.com/wp-content/uploads/2018/03/h_54159221-1160x753.jpg",
     link: "https://www.bbc.com/news/uk-politics-48511379",
-    date: 10 / 07 / 2019,
-    votingDate: 10 / 10 / 2019
+    date:"2019-07-10",
+    votingDate: "2019-10-10"
   },
   {
     title: "Do you want Boris as PM?",
@@ -184,8 +184,8 @@ let articles = [
     imgArticle: "https://cdn.britannica.com/59/143959-004-99295B62.jpg",
     link:
       "https://www.telegraph.co.uk/politics/2019/07/11/tory-leadership-boris-johnson-sees-trump-lifeboat-rescue-brexit/",
-    date: 10 / 07 / 2019,
-    votingDate: 20 / 10 / 2019
+    date: "2019-07-10",
+    votingDate: "2019-10-20"
   }
 ];
 

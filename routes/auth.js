@@ -77,11 +77,11 @@ router.post("/signup", (req, res, next) => {
         from: "Goverment",
         to: email,
         subject: "Political Transformation",
-        text: 'use the following link: http://localhost:3000/auth/newlogin/' + token,
-        html: 'Please click on the following link to create your account: <br> http://localhost:3000/auth/newlogin/'+ token +'<br>'
+        text: `use the following link: ${process.env.BASE_URL}/auth/newlogin/${token}`,
+        html: `Please click on the following link to create your account: <br> ${process.env.BASE_URL}/auth/newlogin/${token} <br>`
       })
       .then(() => {
-        res.redirect("/");
+        res.redirect("/?errorMessage= You have been send a confirmation email, to log in click on the email link that we sent you.");
       })
       .catch(next)
     })
