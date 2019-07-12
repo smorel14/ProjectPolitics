@@ -11,10 +11,12 @@ router.get("/", (req, res, next) => {
     res.render("index", {
       articles: articles,
       title: "News",
+       message: req.query.errorMessage
      // percentageVotes: 
-    });
+    })
   });
 });
+
 
 router.get("/addArticle", checkAdmin, (req, res, next) => {
   console.log("we are here");
@@ -117,19 +119,55 @@ router.get("/profile/:userId", (req, res, next) => {
                   //   });
                   // });
                   
-  router.get("/voting/:articlesId", (req, res, next) => {
-    let articlesId = req.params.articlesId;
-    Article.findById(articlesId).then(articleFromDb => {
+router.get("/voting/:articlesId", (req, res, next) => {
+  let articlesId = req.params.articlesId;
+  let message = '';
+
+  if(!req.user){
+    res.redirect("/auth/login?errorMessage= Please log in, in order to vote.");
+  }
+
+  Promise.all([
+    Article.find(),
+    Article.findById(articlesId)
+  ]).then(responses => {
+
+    console.log('voting time')
+    for (let i = 0; i < responses[1].voteYes.length; i++){
+      console.log('responses[1].voteYes[i].toString()', responses[1].voteYes[i].toString(), req.user.id.toString())
+      if (responses[1].voteYes[i].toString() === req.user.id.toString()){
+        message = "You can't vote more than once";
+      }
+    }
+    for (let i = 0; i < responses[1].voteNo.length; i++){
+      console.log('responses[1].voteNo[i].toString()', responses[1].voteYes[i].toString(), req.user.id.toString())
+      if (responses[1].voteYes[i].toString() === req.user.id.toString()){
+        message = "You can't vote more than once";
+      }
+    }
+    
+    console.log('message', message)
+    if (message === ''){
       res.render("voting", {
-        article: articleFromDb,
-        title: "Vote"
+        article: responses[1],
+        title: "Vote",
       });
-    });
+    }
+    else{
+     // req.session.error = "You can't vote more than once";
+
+     res.redirect("/?errorMessage= You can't vote more than once");
+     // res.redirect("/");
+    }
   });
+});
 
 
-
-
+// res.render("index", {
+//   articles: articles,
+//   title: "News",
+//  // percentageVotes: 
+// });
 
 
 

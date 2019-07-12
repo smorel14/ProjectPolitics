@@ -20,3 +20,9 @@ const articlesSchema = new Schema({
 
 const Article = mongoose.model('Article', articlesSchema);
 module.exports = Article;
+
+
+
+
+
+
