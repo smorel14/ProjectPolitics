@@ -7,10 +7,10 @@
   <button class="btn btn-outline-dark" type="submit">Search</button>
 
 
-</form><br>
+</form><br><br>
 
 
-<form action="/profileList">
+{{!-- <form action="/profileList">
 
 <select class="custom-select mr-sm-2" id="CustomSelect" name="party">
   <option selected>Search by Political Party</option>
@@ -18,18 +18,18 @@
   <option value="2" name="party">Labor</option>
 
 </select>
-</form><br><br><br>
+</form><br><br><br> --}}
+
 
 
 <div>
+
   {{#each user}}
-  <ul>
-    <h4></h4>{{this.name}}</h4>
-    <img src="{{this.profilePicture}}" alt="" width="20%">
-    <a href="/profile/{{this._id}}" class="btn btn-outline-dark" role="button" aria-pressed="true">See {{this.name}} votes </a>
-    
-  </ul>
+
+  <h4>{{this.name}}</h4>
+  <img src="{{this.profilePicture}}" alt="" width="20%">
+  <a href="/profile/{{this._id}} " class="btn btn-outline-dark" role="button" aria-pressed="true">See {{this.name}} votes </a>
+
   {{/each}}
+
 </div>
-
-

@@ -8,6 +8,8 @@ const { checkAdmin, checkUser } = require("../middlewares/middlewares");
 
 router.get("/", (req, res, next) => {
   Article.find().then(articles => {
+    // let yes = articles[0].voteYes;
+    // console.log(yes);
     res.render("index", {
       articles: articles,
       title: "News",
@@ -75,16 +77,16 @@ router.post(
 router.get("/profile/:userId", (req, res, next) => {
   let userId = req.params.userId;
   //User.findById(userId).then(user => {
-    Vote.find({_owner : userId})
+  Vote.find({ _owner: userId })
     .populate("_owner")
     .populate("_article")
-    .then((vote)=>{
-      console.log('vote', vote)
+    .then(vote => {
+      console.log("vote", vote);
       res.render("profile", {
         vote: vote
       });
-    })
-//  });
+    });
+  //  });
 });
 
 
@@ -170,15 +172,13 @@ router.get("/voting/:articlesId", (req, res, next) => {
 // });
 
 
-
-
 router.post("/voting/:articlesId", (req, res, next) => {
   let _owner = req.user.id;
   let option = req.body.select1;
   let visible = req.body.select2;
   let _article = req.params.articlesId;
-  console.log('option', option, _owner, visible, _article);
-  if (option && visible){
+  console.log("option", option, _owner, visible, _article);
+  if (option && visible) {
     Article.findById(_article)
     .then( (article) =>{
       for(let i = 0; i < article.voteYes.length; i++){
@@ -211,207 +211,143 @@ router.post("/voting/:articlesId", (req, res, next) => {
   else{
     res.render("/", { message: "please fill out the ID" });
   }
-  });
+});
 
 
-
-// router.post('/voting', (req,res,next)=>{
-//   console.log("working?")
-
-//   .then( => {
-//     res.redirect('/');
-//   }).catch( error => {
-//     console.log(error);
-//   })
-// });
-
-// router.post('/profile', (req, res, next) => {
-//   let userId = req.params.userId
-//   let imgUser = req.user.profilePicture
-//   User.findById(userId)
-//     .then(userFromDb => {
-//       res.render('profile', {
-//         user : userFromDb,
-//         // profilePicture: imgUser,
-//       })
-//     })
-// })
 
 router.get("/profileList", (req, res, next) => {
-  
-  res.render("profile-list");
+  User.find().then(userFromDb => {
+    console.log("user coming", userFromDb);
+    res.render("profile-list", {
+      user: userFromDb
+      // userId: userId
+    });
+  });
 });
 
 router.post("/profileList", (req, res, next) => {
-    let userId = req.params.userId;
-    let name = req.body.name
-    let searchName = new RegExp(`${name}`, "i")
-    console.log("name is", name)
-    User.find({name: searchName})
-      .then(userFromDb => {
-        console.log("user coming", userFromDb)
-      res.render('profile-list', {
-        user: userFromDb,
-        userId: userId
+  //let userId = req.params.userId;
+  let name = req.body.name;
+  let searchName = new RegExp(`${name}`, "i");
+  console.log("name is", name);
+  User.find({ name: searchName }).then(userFromDb => {
+    console.log("user coming", userFromDb);
+    res.render("profile-list", {
+      user: userFromDb
+      // userId: userId
     });
-  })
+  });
 });
-
-//User.find({name: name})
-
-
-  // let party = req.body.party
-  //   User.find({party: party})
-  //     .then(partyFromDb =>{
-  //       res.render('profile-list', {
-  //       party : partyFromDb  
-
-  //     })
-  //   })
-    
-
-// router.post("/profileList", (req, res, next) => {
-//   let userId = req.params.userId
-
-//   User.find({
-//     $text: {
-//       $search: userId
-//     }
-//   }, {
-//     _id: 0,
-//   }, function(err, data){
-//     res.json(data);
-    
-//   }).limit(4);
-// });
 
 
 
 module.exports = router;
 
+// router.get('/', (req, res, next) => {
+//   let totalVotesList = [];
+//   Article.find()
+//     .then(articles => {
+//       articles.map( article => {
+//         Vote.find({_articleID : article.id})
+//         .then(votes => {
+//           //console.log('article', article)
+//          // console.log('vote', votes.length)
+//           totalVotesList.push([article.id, votes.length])
+//         })
+//       })
+//       console.log('totalVotesList', totalVotesList)
+//       //console.log('article2', articles)
+//       })
+//       res.render('index', {
+//         totalVotesList: totalVotesList,
+//         title: "News"
+//     })
+//     })
 
+// router.get('/', (req, res, next) => {
+//   let totalVotesList = [];
+//   let newidea = [];
+//   Article.find()
+//     .then(articles => {
+//       articles.map( article => {
+//         Vote.find({_articleID : article.id})
+//         .then(votes => {
+//           //console.log('article', article)
+//          // console.log('vote', votes.length)
+//           totalVotesList.push([article.id, votes.length])
+//         })
+//         .then(() => {
+//          console.log(totalVotesList)
+//         })
+//       })
+//       //console.log('totalVotesList', newidea)
+//       //console.log('article2', articles)
+//       })
+//       res.render('index', {
+//         totalVotesList: totalVotesList,
+//         title: "News"
+//     })
+//     })
 
+// router.get('/', (req, res, next) => {
+//   let totalVotesList = [];
+//   Article.find()
+//     .then(articles => {
+//       for(let i = 0; i < articles.length; i++){
+//         Vote.find({_articleID : articles[i].id})
+//         .then(votes => {
+//           //console.log('article', article)
+//          // console.log('vote', votes.length)
+//          console.log(i, 'totalVotesList', totalVotesList)
+//          totalVotesList = totalVotesList.push([articles[i].id, votes.length])
+//         })
+//       }
+//       console.log('totalVotesList', totalVotesList)
+//       //console.log('article2', articles)
+//       })
+//       res.render('index', {
+//         totalVotesList: totalVotesList,
+//         title: "News"
+//     })
+//     })
 
+// router.get('/', (req, res, next) => {
+//   Vote.find()
+//   .populate("_articleID")
+//   .then (votes => {
 
+//   })
 
+// })
 
-  // router.get('/', (req, res, next) => {
-  //   let totalVotesList = [];
-  //   Article.find()
-  //     .then(articles => {
-  //       articles.map( article => {
-  //         Vote.find({_articleID : article.id})
-  //         .then(votes => {
-  //           //console.log('article', article)
-  //          // console.log('vote', votes.length)
-  //           totalVotesList.push([article.id, votes.length])
-  //         })
-  //       })
-  //       console.log('totalVotesList', totalVotesList)
-  //       //console.log('article2', articles)
-  //       })
-  //       res.render('index', {
-  //         totalVotesList: totalVotesList,
-  //         title: "News"
-  //     })
-  //     })
+//   router.get('/', (req, res, next) => {
+//     Promise.all([
+//       Article.find(),
+//       Vote.find({_articleID : articles[i].id})
+//     ]).then((responses)=>{
+//       res.render('index', {
+//         responses: responses,
+//         title: "News"
+//     })
+//   })
+// })
 
-
-
-  // router.get('/', (req, res, next) => {
-  //   let totalVotesList = [];
-  //   let newidea = [];
-  //   Article.find()
-  //     .then(articles => {
-  //       articles.map( article => {
-  //         Vote.find({_articleID : article.id})
-  //         .then(votes => {
-  //           //console.log('article', article)
-  //          // console.log('vote', votes.length)
-  //           totalVotesList.push([article.id, votes.length])
-  //         })
-  //         .then(() => {
-  //          console.log(totalVotesList)
-  //         })
-  //       })
-  //       //console.log('totalVotesList', newidea)
-  //       //console.log('article2', articles)
-  //       })
-  //       res.render('index', {
-  //         totalVotesList: totalVotesList,
-  //         title: "News"
-  //     })
-  //     })
-
-
-
-
-      // router.get('/', (req, res, next) => {
-      //   let totalVotesList = [];
-      //   Article.find()
-      //     .then(articles => {
-      //       for(let i = 0; i < articles.length; i++){
-      //         Vote.find({_articleID : articles[i].id})
-      //         .then(votes => {
-      //           //console.log('article', article)
-      //          // console.log('vote', votes.length)
-      //          console.log(i, 'totalVotesList', totalVotesList)
-      //          totalVotesList = totalVotesList.push([articles[i].id, votes.length])
-      //         })
-      //       }
-      //       console.log('totalVotesList', totalVotesList)
-      //       //console.log('article2', articles)
-      //       })
-      //       res.render('index', {
-      //         totalVotesList: totalVotesList,
-      //         title: "News"
-      //     })
-      //     })
-
-      // router.get('/', (req, res, next) => {
-      //   Vote.find()
-      //   .populate("_articleID")
-      //   .then (votes => {
-          
-      //   })
-        
-      // })
-     
-  
-
-
-        //   router.get('/', (req, res, next) => {
-        //     Promise.all([
-        //       Article.find(),
-        //       Vote.find({_articleID : articles[i].id})
-        //     ]).then((responses)=>{
-        //       res.render('index', {
-        //         responses: responses,
-        //         title: "News"
-        //     })
-        //   })
-        // })
-
-
-
-
-  // router.get('/', (req, res, next) => {
-  //   let totalVotesList = [];
-  //   Article.find()
-  //     .then(articles => {
-  //       for(let i = 0; i < articles.length; i++){
-  //         Vote.find({_articleID : articles[i].id})
-  //         .then(votes => {
-  //           console.log('votes', votes[0])
-  //           res.render('index', {
-  //             articles: articles,
-  //             title: "News",
-  //         })
-  //     })
-  //   }
-  //   })
-  // })
-
+// router.get('/', (req, res, next) => {
+//   let totalVotesList = [];
+//   Article.find()
+//     .then(articles => {
+//       for(let i = 0; i < articles.length; i++){
+//         Vote.find({_articleID : articles[i].id})
+//         .then(votes => {
+//           console.log('votes', votes[0])
+//           res.render('index', {
+//             articles: articles,
+//             title: "News",
+//         })
+//     })
+//   }
+//   })
+// })
 
 //     router.get('/', (req, res, next) => {
 //       let listVotes
