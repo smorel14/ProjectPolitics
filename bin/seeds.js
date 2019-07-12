@@ -121,11 +121,11 @@ let articles = [
     votingDate: 03 / 09 / 2019
   },
   {
-    title: "No deal Brexit",
-    description: "what do you think?",
+    title: "What is your opinion on 'no deal Brexit'?",
+    description: "In a no-deal scenario, the UK would immediately leave the European Union (EU) with no agreement about the 'divorce' process. Overnight, the UK would leave the single market and customs union - arrangements designed to help trade between EU members by eliminating checks and tariffs (taxes on imports).",
     imgArticle:
       "https://g8fip1kplyr33r3krz5b97d1-wpengine.netdna-ssl.com/wp-content/uploads/2018/03/h_54159221-1160x753.jpg",
-    link: String,
+    link: "https://www.bbc.com/news/uk-politics-48511379",
     date: 10 / 07 / 2019,
     votingDate: 10 / 10 / 2019
   },

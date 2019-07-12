@@ -25,11 +25,14 @@
 <div>
 
   {{#each user}}
-
-  <h4>{{this.name}}</h4>
+  <h4><a class="mr-0" href="/profile/{{this._id}}"> {{this.name}} </a></h4>
+  {{!-- <h4>{{this.name}}</h4> --}}
   <img src="{{this.profilePicture}}" alt="" width="20%">
-  <a href="/profile/{{this._id}} " class="btn btn-outline-dark" role="button" aria-pressed="true">See {{this.name}} votes </a>
+  {{!-- <a href="/profile/{{this._id}} " class="btn btn-outline-dark" role="button" aria-pressed="true">See {{this.name}} votes </a> --}}
 
   {{/each}}
 
 </div>
+
+
+{{!-- <a> {{this.description}} </a> <br> <a class="mr-0" href="{{this.link}}">Full Article</a> </p> --}}

@@ -5,6 +5,15 @@ const uploadCload = require("../congfig/cloudinary");
 const User = require("../models/User");
 const Vote = require("../models/Vote");
 const { checkAdmin, checkUser } = require("../middlewares/middlewares");
+const nodemailer = require('nodemailer');
+
+let transporter = nodemailer.createTransport({
+  service: 'Gmail',
+  auth:{
+    user: process.env.GMAIL_USER,
+    pass: process.env.GMAIL_PASS
+  }
+})
 
 router.get("/", (req, res, next) => {
   Article.find().then(articles => {
@@ -261,6 +270,28 @@ router.post("/profileList", (req, res, next) => {
     });
   });
 });
+
+
+router.post("/send-email", (req, res, next) => {
+  //let user = (req.body.user)
+  let user = req.user
+  const email = req.body.email
+  //let article = req.article._id
+  console.log("THIS IS THE USER",user )
+    transporter.sendMail({
+        from: ` Email sent by ${user.name}`,
+        to: email,
+        text: `Check this vote: http://localhost:3000/voting`
+        
+      })
+      .then(info => {
+        
+        res.redirect("/");
+        // res.render('message', { email, subject, message })
+      })
+      .catch(console.log);
+  })
+
 
 
 

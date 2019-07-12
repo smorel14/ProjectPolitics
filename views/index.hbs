@@ -5,58 +5,74 @@
 
 <div class="article-wrapper container">
   {{#each articles}}
-    <div class="article-item border-bottom border-primary mb-4">
-      <h1>{{this.title}}</h1>
-      <a> {{this.description}} </a> <br> <a class="mr-0" href="{{this.link}}">Full Article</a> </p>
-      <img src="{{this.imgArticle}}" alt="" width="100%">
-      {{!-- <button type="button" class="btn btn-outline-dark">Click Here to Vote</button> --}}
-      <div class="vote mb-3" >
-          <p class="for text-light mb-0" style= "width: {{this.voteYes.length}}00%"> For: {{this.voteYes.length}} </p>
-          <p class="against text-light mb-0" style= "width: {{this.voteNo.length}}00%"> Against: {{this.voteNo.length}}</p>
-      </div>
-      <div class ="votingSharing mb-3">
-      <div> <a href="/voting/{{this._id}}" class="btn btn-outline-primary btn-light" role="button" aria-pressed="true">Click Here to Vote<a></a></div>
-      <div> <a href="#" class="btn btn-outline-primary btn-light" role="button" aria-pressed="true">Share</a></div>
-      </div>
+  <div class="article-item border-bottom border-primary mb-4">
+    <h1>{{this.title}}</h1>
+    <a> {{this.description}} </a> <br> <a class="mr-0" href="{{this.link}}">Full Article</a> </p>
+    <img src="{{this.imgArticle}}" alt="" width="100%">
+    {{!-- <button type="button" class="btn btn-outline-dark">Click Here to Vote</button> --}}
+    <div class="vote mb-3">
+      <p class="for text-light mb-0" style="width: {{this.voteYes.length}}00%"> For: {{this.voteYes.length}} </p>
+      <p class="against text-light mb-0" style="width: {{this.voteNo.length}}00%"> Against: {{this.voteNo.length}}</p>
+    </div>
+    <div class="votingSharing mb-3">
+      <div> <a href="/voting/{{this._id}}" class="btn btn-outline-primary btn-light" role="button"
+          aria-pressed="true">Click Here to Vote<a></a></div>
+      <div>
+        
+      <button type="button" class="btn btn-outline-primary btn-light" data-toggle="modal" data-target="#exampleModal">
+        Share
+      </button>
+        
+        </div>
+
 
 
 
     </div>
-  
+
+  </div>
+
   {{/each}}
 </div>
 
 
 
+{{!-- 
+modal  --}}
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+{{!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
   Launch demo modal
-</button>
+</button> --}}
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h4 class="modal-title" id="exampleModalLabel">Send this voting to a friend</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+
+
+
+        <form action="/send-email" method="post">
+          <label for="email">Email</label><br>
+          <input class="form-control" id="email" type="text" name="email" placeholder="RobStark@winterfell.com">
+          
+          <div class="modal-footer">
+
+          <button class="btn btn-info" type="submit">Send</button>
+      
+          </div>
+        </form>
+        
+
+
       </div>
     </div>
   </div>
 </div>
-
-
-
-
-
-
