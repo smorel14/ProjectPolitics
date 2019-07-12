@@ -93,7 +93,7 @@ let users = [
   },
 
   {
-    email: "nince",
+    email: "vince",
     profilePicture: "/images/vince.jpeg",
     password: bcrypt.hashSync("vince", bcrypt.genSaltSync(bcryptSalt)),
     name: "Vince Cable",
