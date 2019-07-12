@@ -1,3 +1,9 @@
+
+    {{#if message }}
+    <div class="alert alert-warning" role="alert"> {{ message }} </div>
+    {{/if}}
+
+
 <div class="article-wrapper container">
   {{#each articles}}
   <div class="article-item border-bottom border-primary mb-4">
@@ -21,6 +27,8 @@
         </div>
 
 
+
+
     </div>
 
   </div>
@@ -32,6 +40,11 @@
 
 {{!-- 
 modal  --}}
+
+<!-- Button trigger modal -->
+{{!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button> --}}
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
