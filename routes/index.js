@@ -251,7 +251,7 @@ router.post("/voting/:articlesId", (req, res, next) => {
 
 
 
-router.get("/profileList", checkUser, (req, res, next) => {
+router.get("/profileList", (req, res, next) => {
   User.find().then(userFromDb => {
     console.log("user coming", userFromDb);
     res.render("profile-list", {
@@ -262,7 +262,7 @@ router.get("/profileList", checkUser, (req, res, next) => {
   });
 });
 
-router.post("/profileList", checkUser, (req, res, next) => {
+router.post("/profileList", (req, res, next) => {
   //let userId = req.params.userId;
   let name = req.body.name;
   let searchName = new RegExp(`${name}`, "i");
@@ -270,7 +270,7 @@ router.post("/profileList", checkUser, (req, res, next) => {
   User.find({ name: searchName }).then(userFromDb => {
     console.log("user coming", userFromDb);
     res.render("profile-list", {
-      user: userFromDb
+      use: userFromDb
       // userId: userId
     });
   });
