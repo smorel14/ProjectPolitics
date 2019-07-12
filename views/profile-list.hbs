@@ -1,14 +1,14 @@
+<div class="container">
+
+  <div class="profile-list mt-3 mb-3">
+    <form class="form-inline" method="POST" action="/profileList" >
+      <input class="form btn-lg" type="text" placeholder="Ned Stark" name="name">
+      <button class="btn btn-primary pt-2 pb-2 ml-3" type="submit">Search</button>
+    </form><br><br>
+  </div>
 
 
-<div class="profile-list mt-3 mb-3">
-<form class="form-inline" method="POST" action="/profileList">
-  <input class="form btn-lg" type="text" placeholder="Ned Stark" name="name">
-  <button class="btn btn-primary pt-2 pb-2 ml-3" type="submit">Search</button>
-</form><br><br>
-</div>
-
-
-{{!-- <form action="/profileList">
+  {{!-- <form action="/profileList">
 
 <select class="custom-select mr-sm-2" id="CustomSelect" name="party">
   <option selected>Search by Political Party</option>
@@ -20,10 +20,10 @@
 
 
 
-<div>
-  {{#each user}}
+  <div>
+    {{#each use}}
 
-<div class="profile-list mb-3">
+    <div class="profile-list mb-3">
 
 <div class="card" style="width: 18rem;">
   <img src="{{this.profilePicture}}" class="card-img-top" alt="...">
@@ -37,7 +37,8 @@
 </div>
   {{/each}}
 
-</div>
+  </div>
 
+</div>
 
 {{!-- <a> {{this.description}} </a> <br> <a class="mr-0" href="{{this.link}}">Full Article</a> </p> --}}
