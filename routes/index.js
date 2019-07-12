@@ -168,15 +168,17 @@ router.get("/voting/:articlesId", (req, res, next) => {
 
     console.log('voting time')
     for (let i = 0; i < responses[1].voteYes.length; i++){
-      console.log('responses[1].voteYes[i].toString()', responses[1].voteYes[i].toString(), req.user.id.toString())
+     // console.log('responses[1].voteYes[i].toString()', responses[1].voteYes[i].toString(), req.user.id.toString())
       if (responses[1].voteYes[i].toString() === req.user.id.toString()){
         message = "You can't vote more than once";
       }
     }
-    for (let i = 0; i < responses[1].voteNo.length; i++){
-      console.log('responses[1].voteNo[i].toString()', responses[1].voteYes[i].toString(), req.user.id.toString())
-      if (responses[1].voteYes[i].toString() === req.user.id.toString()){
+    for (let j = 0; j < responses[1].voteNo.length; j++){
+
+     // console.log('responses[1].voteNo[i].toString()', responses[1].voteYes[i].toString(), req.user.id.toString())
+      if (responses[1].voteNo[j].toString() === req.user.id.toString()){
         message = "You can't vote more than once";
+        console.log('message', message)
       }
     }
     
