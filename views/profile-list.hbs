@@ -1,13 +1,11 @@
-<div>
-  <h3 class="font-bold"> Search Users </h3><br>
-</div>
 
+
+<div class="profile-list mt-3 mb-3">
 <form class="form-inline" method="POST" action="/profileList">
-  <input class="form" type="text" placeholder="Ned Stark" name="name">
-  <button class="btn btn-outline-dark" type="submit">Search</button>
-
-
+  <input class="form btn-lg" type="text" placeholder="Ned Stark" name="name">
+  <button class="btn btn-primary pt-2 pb-2 ml-3" type="submit">Search</button>
 </form><br><br>
+</div>
 
 
 {{!-- <form action="/profileList">
@@ -23,13 +21,23 @@
 
 
 <div>
-
   {{#each user}}
-  <h4><a class="mr-0" href="/profile/{{this._id}}"> {{this.name}} </a></h4>
-  {{!-- <h4>{{this.name}}</h4> --}}
-  <img src="{{this.profilePicture}}" alt="" width="20%">
-  {{!-- <a href="/profile/{{this._id}} " class="btn btn-outline-dark" role="button" aria-pressed="true">See {{this.name}} votes </a> --}}
 
+<div class="profile-list mb-3">
+
+<div class="card" style="width: 18rem;">
+  <img src="{{this.profilePicture}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title"> {{this.name}} </h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{this.party}}</h6>
+    <p class="card-text"><a class="title"> Political View </a> {{this.politicalView}}</p>
+    <a href="#" class="btn btn-primary">View Profile</a>
+  </div>
+</div>
+
+
+
+</div>
   {{/each}}
 
 </div>

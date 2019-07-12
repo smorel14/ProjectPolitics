@@ -251,7 +251,8 @@ router.get("/profileList", (req, res, next) => {
   User.find().then(userFromDb => {
     console.log("user coming", userFromDb);
     res.render("profile-list", {
-      user: userFromDb
+      user: userFromDb,
+      title: "Profile List"
       // userId: userId
     });
   });
